@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -32,24 +32,33 @@
 
       :root {
         --bg: #0a0a0a;
+        --hdr: #0f0f0f;
         --s1: #141414;
-        --s2: #1c1c1c;
-        --s3: #252525;
-        --bd: rgba(255, 255, 255, 0.07);
+        --s2: #1e1e1e;
+        --s3: #282828;
+        --bd: rgba(255, 255, 255, 0.08);
         --text: #f2f2f2;
-        --sub: #888;
-        --sub2: #444;
+        --sub: #999;
+        --sub2: #555;
+
+        /* brand */
         --green: #22c55e;
-        --gd: rgba(34, 197, 94, 0.12);
-        --gb: rgba(34, 197, 94, 0.22);
         --red: #f43f5e;
-        --rd: rgba(244, 63, 94, 0.12);
-        --rb: rgba(244, 63, 94, 0.22);
         --yel: #f59e0b;
         --pur: #8b5cf6;
-        --purd: rgba(139, 92, 246, 0.14);
-        --purb: rgba(139, 92, 246, 0.25);
-        --r: 14px;
+        --teal: #14b8a6;
+
+        /* card backgrounds — saturados y oscuros */
+        --card-red-bg: #1a0408;
+        --card-red-bd: rgba(244, 63, 94, 0.35);
+        --card-grn-bg: #041a0b;
+        --card-grn-bd: rgba(34, 197, 94, 0.3);
+        --card-pur-bg: #0d0820;
+        --card-pur-bd: rgba(139, 92, 246, 0.3);
+        --card-neu-bg: #111118;
+        --card-neu-bd: rgba(255, 255, 255, 0.1);
+
+        --r: 16px;
         --st: env(safe-area-inset-top, 0px);
         --sb: env(safe-area-inset-bottom, 0px);
       }
@@ -69,61 +78,66 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ── HEADER ───────────────────── */
+      /* ── HEADER ───────────────────────────── */
       .hdr {
-        padding: calc(16px + var(--st)) 20px 18px;
-        background: var(--s1);
+        background: var(--hdr);
         border-bottom: 1px solid var(--bd);
+        padding: calc(18px + var(--st)) 20px 20px;
       }
       .hdr-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
+
       .hdr-brand {
         font-family: "Syne", sans-serif;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
-        color: var(--pur);
-        margin-bottom: 6px;
+        color: var(--green);
+        margin-bottom: 8px;
       }
       .hdr-name {
         font-family: "Syne", sans-serif;
-        font-size: 26px;
+        font-size: 32px;
         font-weight: 800;
-        line-height: 1.1;
+        color: var(--text);
+        line-height: 1.05;
+        letter-spacing: -0.5px;
       }
       .hdr-meta {
         font-size: 12px;
         color: var(--sub);
-        margin-top: 5px;
+        margin-top: 6px;
+        line-height: 1.5;
       }
 
       /* ring */
       .rw {
         position: relative;
-        width: 72px;
-        height: 72px;
+        width: 80px;
+        height: 80px;
         flex-shrink: 0;
+        margin-left: 12px;
       }
       .rw svg {
         transform: rotate(-90deg);
       }
       .rt {
         fill: none;
-        stroke: var(--s3);
-        stroke-width: 5;
+        stroke: #222;
+        stroke-width: 6;
       }
       .rf {
         fill: none;
         stroke: var(--green);
-        stroke-width: 5;
+        stroke-width: 6;
         stroke-linecap: round;
-        stroke-dasharray: 201.06;
-        stroke-dashoffset: 70.4;
+        stroke-dasharray: 226.19;
+        stroke-dashoffset: 79.2;
       }
       .ri {
         position: absolute;
@@ -135,56 +149,57 @@
       }
       .rn {
         font-family: "Syne", sans-serif;
-        font-size: 20px;
+        font-size: 26px;
         font-weight: 800;
         line-height: 1;
+        color: var(--text);
       }
       .rl {
-        font-size: 8px;
+        font-size: 9px;
         color: var(--sub);
-        letter-spacing: 0.06em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-top: 1px;
+        margin-top: 2px;
       }
 
       /* tags */
       .tags {
         display: flex;
-        gap: 6px;
+        gap: 8px;
         flex-wrap: wrap;
       }
       .tag {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
-        padding: 4px 10px;
+        gap: 6px;
+        padding: 5px 12px;
         border-radius: 20px;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 500;
         background: var(--s2);
         border: 1px solid var(--bd);
         color: var(--sub);
       }
       .tag .d {
-        width: 5px;
-        height: 5px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
       }
 
-      /* ── LAYOUT ───────────────────── */
+      /* ── CONTENT ─────────────────────────── */
       .sec {
-        padding: 18px 16px 0;
+        padding: 20px 16px 0;
       }
       .sh {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
       .sl {
         font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--sub);
       }
@@ -195,120 +210,147 @@
         cursor: pointer;
       }
 
-      /* ── KPI GRID ─────────────────── */
+      /* ── KPI GRID ────────────────────────── */
       .kgrid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 12px;
       }
+
       .kc {
-        background: var(--s1);
-        border: 1px solid var(--bd);
         border-radius: var(--r);
-        padding: 14px;
+        padding: 18px;
       }
-      .kc.r {
-        background: var(--rd);
-        border-color: var(--rb);
+
+      .kc.red {
+        background: var(--card-red-bg);
+        border: 1px solid var(--card-red-bd);
       }
-      .kc.g {
-        background: var(--gd);
-        border-color: var(--gb);
+      .kc.grn {
+        background: var(--card-grn-bg);
+        border: 1px solid var(--card-grn-bd);
       }
-      .kc.p {
-        background: var(--purd);
-        border-color: var(--purb);
+      .kc.pur {
+        background: var(--card-pur-bg);
+        border: 1px solid var(--card-pur-bd);
       }
+      .kc.neu {
+        background: var(--card-neu-bg);
+        border: 1px solid var(--card-neu-bd);
+      }
+
       .kl {
         font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--sub);
-        margin-bottom: 7px;
+        margin-bottom: 10px;
       }
-      .kv {
-        font-family: "Syne", sans-serif;
-        font-size: 24px;
-        font-weight: 800;
-        line-height: 1;
-      }
-      .kc.r .kv {
+      .kc.red .kl {
         color: var(--red);
       }
-      .kc.g .kv {
+      .kc.grn .kl {
         color: var(--green);
       }
-      .kc.p .kv {
+      .kc.pur .kl {
         color: var(--pur);
       }
+      .kc.neu .kl {
+        color: var(--teal);
+      }
+
+      .kv {
+        font-family: "Syne", sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+      .kc.red .kv {
+        color: var(--red);
+      }
+      .kc.grn .kv {
+        color: var(--green);
+      }
+      .kc.pur .kv {
+        color: var(--pur);
+      }
+      .kc.neu .kv {
+        color: var(--teal);
+        font-size: 38px;
+      }
+
       .ks {
-        font-size: 11px;
+        font-size: 12px;
         color: var(--sub);
-        margin-top: 5px;
+        margin-top: 8px;
         line-height: 1.4;
       }
 
-      /* ── AI CARD ──────────────────── */
+      /* ── AI CARD ─────────────────────────── */
       .ai {
         background: var(--s1);
         border: 1px solid var(--bd);
         border-radius: var(--r);
-        padding: 16px;
+        padding: 18px;
       }
       .ail {
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: var(--yel);
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
-      .aid {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--yel);
+      .aico {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
       }
       .ait {
-        font-size: 13.5px;
-        color: #c0c0c0;
-        line-height: 1.65;
+        font-size: 14px;
+        color: #c5c5c5;
+        line-height: 1.7;
       }
       .ait strong {
         color: var(--text);
         font-weight: 600;
       }
 
-      /* ── SIMULATOR ────────────────── */
+      /* ── SIMULATOR ───────────────────────── */
       .sim {
         background: var(--s1);
         border: 1px solid var(--bd);
         border-radius: var(--r);
-        padding: 16px;
+        padding: 18px;
       }
       .sim-t {
         font-family: "Syne", sans-serif;
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 700;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
       }
       .sim-s {
         font-size: 12px;
         color: var(--sub);
-        margin-bottom: 16px;
+        margin-bottom: 18px;
       }
       .slr {
-        margin-bottom: 14px;
+        margin-bottom: 16px;
       }
       .slh {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 7px;
+        margin-bottom: 8px;
       }
       .sln {
         font-size: 13px;
@@ -316,13 +358,15 @@
       }
       .slv {
         font-family: "Syne", sans-serif;
-        font-size: 15px;
-        font-weight: 700;
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--text);
       }
+
       input[type="range"] {
         -webkit-appearance: none;
         width: 100%;
-        height: 3px;
+        height: 4px;
         background: var(--s3);
         border-radius: 2px;
         outline: none;
@@ -330,17 +374,18 @@
       }
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         background: var(--pur);
         border-radius: 50%;
-        border: 2px solid var(--bg);
+        border: 3px solid var(--bg);
       }
+
       .sim-res {
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: 10px;
-        padding: 14px;
+        border-radius: 12px;
+        padding: 16px;
         margin-top: 4px;
         display: flex;
         justify-content: space-between;
@@ -352,12 +397,12 @@
       }
       .sim-rv {
         font-family: "Syne", sans-serif;
-        font-size: 22px;
+        font-size: 26px;
         font-weight: 800;
         color: var(--green);
       }
 
-      /* ── ALERTS ───────────────────── */
+      /* ── ALERTS ──────────────────────────── */
       .alc {
         background: var(--s1);
         border: 1px solid var(--bd);
@@ -368,7 +413,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 13px 16px;
+        padding: 14px 16px;
         border-bottom: 1px solid var(--bd);
         gap: 12px;
       }
@@ -378,19 +423,18 @@
       .all {
         display: flex;
         align-items: center;
-        gap: 11px;
+        gap: 12px;
         flex: 1;
-        min-width: 0;
       }
       .ale {
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
         background: var(--s2);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 19px;
+        font-size: 20px;
         flex-shrink: 0;
       }
       .aln {
@@ -404,12 +448,13 @@
       }
       .alp {
         font-family: "Syne", sans-serif;
-        font-size: 15px;
+        font-size: 17px;
         font-weight: 800;
         color: var(--red);
+        flex-shrink: 0;
       }
 
-      /* ── PLATILLOS ────────────────── */
+      /* ── PLATILLOS ───────────────────────── */
       .plc {
         background: var(--s1);
         border: 1px solid var(--bd);
@@ -417,7 +462,7 @@
         overflow: hidden;
       }
       .plr {
-        padding: 12px 16px;
+        padding: 13px 16px;
         border-bottom: 1px solid var(--bd);
         display: none;
       }
@@ -443,32 +488,20 @@
       .plrr {
         display: flex;
         align-items: center;
-        gap: 7px;
+        gap: 8px;
         flex-shrink: 0;
       }
       .plp {
         font-family: "Syne", sans-serif;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 800;
       }
       .plb {
         font-size: 9px;
         font-weight: 700;
-        padding: 2px 6px;
+        padding: 2px 7px;
         border-radius: 6px;
-        letter-spacing: 0.04em;
-      }
-      .br {
-        color: var(--red);
-        background: var(--rd);
-      }
-      .by {
-        color: var(--yel);
-        background: rgba(245, 158, 11, 0.12);
-      }
-      .bg {
-        color: var(--green);
-        background: var(--gd);
+        letter-spacing: 0.05em;
       }
       .cr {
         color: var(--red);
@@ -479,10 +512,22 @@
       .cg {
         color: var(--green);
       }
+      .br {
+        color: var(--red);
+        background: rgba(244, 63, 94, 0.12);
+      }
+      .by {
+        color: var(--yel);
+        background: rgba(245, 158, 11, 0.12);
+      }
+      .bg {
+        color: var(--green);
+        background: rgba(34, 197, 94, 0.12);
+      }
       .pls {
         font-size: 11px;
         color: var(--sub);
-        margin-bottom: 7px;
+        margin-bottom: 8px;
         line-height: 1.4;
       }
       .pg {
@@ -513,13 +558,14 @@
       .pill {
         font-size: 11px;
         font-weight: 500;
-        padding: 4px 11px;
+        padding: 4px 12px;
         border-radius: 20px;
         cursor: pointer;
         border: 1px solid var(--bd);
         background: transparent;
         color: var(--sub);
         font-family: "DM Sans", sans-serif;
+        transition: all 0.15s;
       }
       .pill.on {
         background: var(--s2);
@@ -527,7 +573,7 @@
         border-color: #3a3a3a;
       }
 
-      /* ── BOTTOM ───────────────────── */
+      /* ── BOTTOM ──────────────────────────── */
       .bot {
         position: fixed;
         bottom: 0;
@@ -535,20 +581,21 @@
         transform: translateX(-50%);
         width: 100%;
         max-width: 430px;
-        background: linear-gradient(to top, var(--bg) 65%, transparent);
-        padding: 14px 16px calc(18px + var(--sb));
+        background: linear-gradient(to top, var(--bg) 60%, transparent);
+        padding: 14px 16px calc(20px + var(--sb));
         z-index: 100;
       }
       .fbtn {
         width: 100%;
-        height: 52px;
+        height: 54px;
         border-radius: 14px;
         border: none;
         background: var(--text);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 15px;
-        font-weight: 700;
+        font-weight: 800;
+        letter-spacing: 0.02em;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -557,7 +604,7 @@
         transition: opacity 0.15s;
       }
       .fbtn:active {
-        opacity: 0.82;
+        opacity: 0.8;
       }
       .upd {
         text-align: center;
@@ -566,23 +613,23 @@
         margin-top: 8px;
       }
 
-      /* ── MODAL ────────────────────── */
+      /* ── MODAL ───────────────────────────── */
       .ov {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.82);
+        background: rgba(0, 0, 0, 0.85);
         display: none;
         align-items: flex-end;
         justify-content: center;
         z-index: 200;
-        backdrop-filter: blur(6px);
+        backdrop-filter: blur(8px);
       }
       .ov.open {
         display: flex;
       }
       .mod {
         background: var(--s1);
-        border-radius: 20px 20px 0 0;
+        border-radius: 22px 22px 0 0;
         width: 100%;
         max-width: 430px;
         padding: 10px 18px calc(28px + var(--sb));
@@ -598,17 +645,17 @@
         }
       }
       .mh {
-        width: 32px;
-        height: 3px;
+        width: 36px;
+        height: 4px;
         background: var(--s3);
         border-radius: 2px;
-        margin: 0 auto 18px;
+        margin: 0 auto 20px;
       }
       .mt {
         font-family: "Syne", sans-serif;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 800;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
       }
       .ms {
         font-size: 13px;
@@ -619,16 +666,16 @@
       .mbs {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
       }
       .mb {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 14px;
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: 12px;
-        padding: 14px 16px;
+        border-radius: 14px;
+        padding: 15px 16px;
         cursor: pointer;
         transition: border-color 0.15s;
       }
@@ -636,8 +683,8 @@
         border-color: var(--pur);
       }
       .mi {
-        font-size: 20px;
-        width: 32px;
+        font-size: 22px;
+        width: 34px;
         text-align: center;
       }
       .mif h4 {
@@ -664,13 +711,13 @@
 
       #toast {
         position: fixed;
-        bottom: 110px;
+        bottom: 115px;
         left: 50%;
         transform: translateX(-50%) translateY(10px);
         background: #1e1e1e;
         color: #fff;
-        padding: 9px 16px;
-        border-radius: 20px;
+        padding: 10px 18px;
+        border-radius: 22px;
         font-size: 12px;
         opacity: 0;
         transition: all 0.25s;
@@ -682,7 +729,7 @@
     </style>
   </head>
   <body>
-    <!-- HEADER -->
+    <!-- HEADER — NEGRO -->
     <header class="hdr">
       <div class="hdr-top">
         <div>
@@ -693,12 +740,13 @@
           </div>
         </div>
         <div class="rw">
-          <svg viewBox="0 0 72 72" width="72" height="72">
-            <circle class="rt" cx="36" cy="36" r="32" />
-            <circle class="rf" cx="36" cy="36" r="32" />
+          <svg viewBox="0 0 80 80" width="80" height="80">
+            <circle class="rt" cx="40" cy="40" r="36" />
+            <circle class="rf" cx="40" cy="40" r="36" />
           </svg>
           <div class="ri">
-            <span class="rn">74</span><span class="rl">Score</span>
+            <span class="rn">74</span>
+            <span class="rl">Score</span>
           </div>
         </div>
       </div>
@@ -721,24 +769,25 @@
     <div class="sec">
       <div class="sh"><span class="sl">Impacto financiero</span></div>
       <div class="kgrid">
-        <div class="kc r">
+        <div class="kc red">
           <div class="kl">Perdida estimada</div>
           <div class="kv">$8,420</div>
           <div class="ks">esta semana &middot; MXN</div>
         </div>
-        <div class="kc g">
+
+        <div class="kc grn">
           <div class="kl">Potencial recuperable</div>
           <div class="kv">$6,180</div>
           <div class="ks">si bajas FC a 30%</div>
         </div>
-        <div class="kc">
+
+        <div class="kc neu">
           <div class="kl">Mejor platillo</div>
-          <div class="kv" style="font-size: 20px; color: var(--green)">
-            Alitas
-          </div>
+          <div class="kv" style="font-size: 36px">Alitas</div>
           <div class="ks">27.8% FC &middot; empuja más ventas</div>
         </div>
-        <div class="kc p">
+
+        <div class="kc pur">
           <div class="kl">Acción rápida</div>
           <div class="kv">+$25</div>
           <div class="ks">al 2x1 recupera $3,200/mes</div>
@@ -750,7 +799,10 @@
     <div class="sec">
       <div class="sh"><span class="sl">Análisis</span></div>
       <div class="ai">
-        <div class="ail"><span class="aid"></span>Margen AI</div>
+        <div class="ail">
+          <div class="aico">✦</div>
+          Margen AI
+        </div>
         <p class="ait">
           Esta semana dejaste ir <strong>$8,420 MXN</strong> en food cost
           innecesario. Solo con ajustar el precio del
@@ -767,7 +819,9 @@
       <div class="sh"><span class="sl">Simulador de precio</span></div>
       <div class="sim">
         <div class="sim-t">¿Cuánto ganarías?</div>
-        <div class="sim-s">Mueve los sliders y ve el impacto</div>
+        <div class="sim-s">
+          Ajusta los sliders y ve el impacto en tiempo real
+        </div>
         <div class="slr">
           <div class="slh">
             <span class="sln">FC objetivo</span>
@@ -1064,7 +1118,6 @@
         });
       }
 
-      // Simulator
       const HOY = 25.9;
       function upd() {
         const fc = +document.getElementById("fcS").value;
@@ -1082,7 +1135,6 @@
       document.getElementById("fcS").addEventListener("input", upd);
       document.getElementById("vS").addEventListener("input", upd);
 
-      // Modal
       function openM() {
         document.getElementById("ov").classList.add("open");
       }
@@ -1093,7 +1145,6 @@
         if (e.target === e.currentTarget) closeM();
       }
 
-      // Toast
       function showToast(msg) {
         closeM();
         const t = document.getElementById("toast");
@@ -1102,12 +1153,14 @@
           opacity: "1",
           transform: "translateX(-50%) translateY(0)",
         });
-        setTimeout(() => {
-          Object.assign(t.style, {
-            opacity: "0",
-            transform: "translateX(-50%) translateY(10px)",
-          });
-        }, 2200);
+        setTimeout(
+          () =>
+            Object.assign(t.style, {
+              opacity: "0",
+              transform: "translateX(-50%) translateY(10px)",
+            }),
+          2200,
+        );
       }
 
       upd();
