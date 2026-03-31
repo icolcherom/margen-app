@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#0f0f0f" />
+    <meta name="theme-color" content="#0a0a0a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
@@ -14,11 +14,11 @@
     />
     <meta name="apple-mobile-web-app-title" content="Margen" />
     <link rel="manifest" href="/manifest.json" />
-    <title>Margen — Food Cost Dashboard</title>
+    <title>Margen</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -31,20 +31,27 @@
       }
 
       :root {
-        --bg: #0f0f0f;
-        --surface: #1a1a1a;
-        --surface2: #222222;
-        --border: #2a2a2a;
-        --text: #f0f0f0;
-        --muted: #888;
+        --bg: #0a0a0a;
+        --s1: #141414;
+        --s2: #1c1c1c;
+        --s3: #252525;
+        --bd: rgba(255, 255, 255, 0.07);
+        --text: #f2f2f2;
+        --sub: #888;
+        --sub2: #444;
         --green: #22c55e;
-        --yellow: #eab308;
-        --red: #ef4444;
-        --orange: #f97316;
-        --purple: #a78bfa;
-        --radius: 16px;
-        --safe-top: env(safe-area-inset-top, 0px);
-        --safe-bot: env(safe-area-inset-bottom, 0px);
+        --gd: rgba(34, 197, 94, 0.12);
+        --gb: rgba(34, 197, 94, 0.22);
+        --red: #f43f5e;
+        --rd: rgba(244, 63, 94, 0.12);
+        --rb: rgba(244, 63, 94, 0.22);
+        --yel: #f59e0b;
+        --pur: #8b5cf6;
+        --purd: rgba(139, 92, 246, 0.14);
+        --purb: rgba(139, 92, 246, 0.25);
+        --r: 14px;
+        --st: env(safe-area-inset-top, 0px);
+        --sb: env(safe-area-inset-bottom, 0px);
       }
 
       html {
@@ -56,71 +63,69 @@
         background: var(--bg);
         color: var(--text);
         min-height: 100dvh;
-        padding-bottom: calc(88px + var(--safe-bot));
-        overflow-x: hidden;
+        max-width: 430px;
+        margin: 0 auto;
+        padding-bottom: calc(96px + var(--sb));
+        -webkit-font-smoothing: antialiased;
       }
 
-      h1,
-      h2,
-      h3,
-      .score-num,
-      .kpi-val {
-        font-family: "Syne", sans-serif;
+      /* ── HEADER ───────────────────── */
+      .hdr {
+        padding: calc(16px + var(--st)) 20px 18px;
+        background: var(--s1);
+        border-bottom: 1px solid var(--bd);
       }
-
-      /* ── HEADER ────────────────────────── */
-      .header {
-        background: #111;
-        border-bottom: 1px solid var(--border);
-        padding: calc(12px + var(--safe-top)) 20px 20px;
-      }
-      .header-top {
+      .hdr-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: 16px;
+        margin-bottom: 14px;
       }
-      .header-info h1 {
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
+      .hdr-brand {
+        font-family: "Syne", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--purple);
-        margin-bottom: 4px;
+        color: var(--pur);
+        margin-bottom: 6px;
       }
-      .header-info h2 {
-        font-size: 22px;
+      .hdr-name {
+        font-family: "Syne", sans-serif;
+        font-size: 26px;
         font-weight: 800;
-        color: var(--text);
+        line-height: 1.1;
       }
-      .header-info .subtitle {
-        font-size: 13px;
-        color: var(--muted);
-        margin-top: 2px;
+      .hdr-meta {
+        font-size: 12px;
+        color: var(--sub);
+        margin-top: 5px;
       }
 
-      /* Score ring */
-      .score-ring {
+      /* ring */
+      .rw {
         position: relative;
-        width: 88px;
-        height: 88px;
+        width: 72px;
+        height: 72px;
         flex-shrink: 0;
       }
-      .score-ring svg {
+      .rw svg {
         transform: rotate(-90deg);
       }
-      .ring-track {
+      .rt {
         fill: none;
-        stroke: var(--border);
-        stroke-width: 6;
+        stroke: var(--s3);
+        stroke-width: 5;
       }
-      .ring-fill {
+      .rf {
         fill: none;
-        stroke-width: 6;
+        stroke: var(--green);
+        stroke-width: 5;
         stroke-linecap: round;
-        transition: stroke-dashoffset 0.6s ease;
+        stroke-dasharray: 201.06;
+        stroke-dashoffset: 70.4;
       }
-      .score-inner {
+      .ri {
         position: absolute;
         inset: 0;
         display: flex;
@@ -128,27 +133,27 @@
         align-items: center;
         justify-content: center;
       }
-      .score-num {
-        font-size: 22px;
+      .rn {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
         font-weight: 800;
         line-height: 1;
       }
-      .score-label {
-        font-size: 9px;
-        color: var(--muted);
+      .rl {
+        font-size: 8px;
+        color: var(--sub);
         letter-spacing: 0.06em;
         text-transform: uppercase;
         margin-top: 1px;
       }
 
-      /* Badge strip */
-      .badge-strip {
+      /* tags */
+      .tags {
         display: flex;
-        gap: 8px;
-        margin-top: 14px;
+        gap: 6px;
         flex-wrap: wrap;
       }
-      .badge {
+      .tag {
         display: inline-flex;
         align-items: center;
         gap: 5px;
@@ -156,496 +161,435 @@
         border-radius: 20px;
         font-size: 11px;
         font-weight: 500;
-        background: var(--surface2);
-        border: 1px solid var(--border);
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        color: var(--sub);
       }
-      .badge .dot {
-        width: 6px;
-        height: 6px;
+      .tag .d {
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
       }
 
-      /* ── CONTENT ────────────────────────── */
-      .content {
-        padding: 20px 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+      /* ── LAYOUT ───────────────────── */
+      .sec {
+        padding: 18px 16px 0;
       }
-
-      /* ── KPI ROW ────────────────────────── */
-      .kpi-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-      .kpi-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 16px;
-      }
-      .kpi-card.danger {
-        border-color: rgba(239, 68, 68, 0.35);
-        background: rgba(239, 68, 68, 0.07);
-      }
-      .kpi-card.success {
-        border-color: rgba(34, 197, 94, 0.35);
-        background: rgba(34, 197, 94, 0.07);
-      }
-      .kpi-label {
-        font-size: 11px;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-      .kpi-val {
-        font-size: 26px;
-        font-weight: 800;
-        line-height: 1;
-      }
-      .kpi-card.danger .kpi-val {
-        color: var(--red);
-      }
-      .kpi-card.success .kpi-val {
-        color: var(--green);
-      }
-      .kpi-sub {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 4px;
-      }
-
-      /* ── SECTION LABEL ─────────────────── */
-      .section-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: -4px;
-      }
-
-      /* ── AI CARD ────────────────────────── */
-      .ai-card {
-        background: linear-gradient(
-          135deg,
-          rgba(124, 58, 237, 0.15),
-          rgba(167, 139, 250, 0.05)
-        );
-        border: 1px solid rgba(167, 139, 250, 0.3);
-        border-radius: var(--radius);
-        padding: 18px;
-      }
-      .ai-card-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-      .ai-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 10px;
-        background: rgba(167, 139, 250, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        flex-shrink: 0;
-      }
-      .ai-card-header h3 {
-        font-size: 14px;
-        font-weight: 700;
-        color: var(--purple);
-      }
-      .ai-body {
-        font-size: 13px;
-        color: #ccc;
-        line-height: 1.6;
-      }
-      .ai-body strong {
-        color: var(--text);
-      }
-
-      /* ── TRIGGER GRID ───────────────────── */
-      .trigger-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-      .trigger-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .trigger-icon {
-        font-size: 22px;
-      }
-      .trigger-type {
-        font-size: 10px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        font-weight: 600;
-      }
-      .trigger-card.red .trigger-type {
-        color: var(--red);
-      }
-      .trigger-card.green .trigger-type {
-        color: var(--green);
-      }
-      .trigger-card.yellow .trigger-type {
-        color: var(--yellow);
-      }
-      .trigger-card.purple .trigger-type {
-        color: var(--purple);
-      }
-      .trigger-title {
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 1.3;
-        color: var(--text);
-      }
-      .trigger-val {
-        font-size: 19px;
-        font-weight: 800;
-        font-family: "Syne", sans-serif;
-      }
-      .trigger-card.red .trigger-val {
-        color: var(--red);
-      }
-      .trigger-card.green .trigger-val {
-        color: var(--green);
-      }
-      .trigger-card.yellow .trigger-val {
-        color: var(--yellow);
-      }
-      .trigger-card.purple .trigger-val {
-        color: var(--purple);
-      }
-      .trigger-sub {
-        font-size: 11px;
-        color: var(--muted);
-      }
-
-      /* ── SIMULATOR ──────────────────────── */
-      .simulator {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 18px;
-      }
-      .simulator h3 {
-        font-size: 15px;
-        font-weight: 700;
-        margin-bottom: 4px;
-      }
-      .simulator .sim-sub {
-        font-size: 12px;
-        color: var(--muted);
-        margin-bottom: 18px;
-      }
-      .slider-row {
-        margin-bottom: 18px;
-      }
-      .slider-header {
+      .sh {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
       }
-      .slider-label {
-        font-size: 13px;
-        color: #ccc;
+      .sl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sub);
       }
-      .slider-val {
+      .slink {
+        font-size: 12px;
+        color: var(--pur);
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      /* ── KPI GRID ─────────────────── */
+      .kgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .kc {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
+        padding: 14px;
+      }
+      .kc.r {
+        background: var(--rd);
+        border-color: var(--rb);
+      }
+      .kc.g {
+        background: var(--gd);
+        border-color: var(--gb);
+      }
+      .kc.p {
+        background: var(--purd);
+        border-color: var(--purb);
+      }
+      .kl {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sub);
+        margin-bottom: 7px;
+      }
+      .kv {
+        font-family: "Syne", sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1;
+      }
+      .kc.r .kv {
+        color: var(--red);
+      }
+      .kc.g .kv {
+        color: var(--green);
+      }
+      .kc.p .kv {
+        color: var(--pur);
+      }
+      .ks {
+        font-size: 11px;
+        color: var(--sub);
+        margin-top: 5px;
+        line-height: 1.4;
+      }
+
+      /* ── AI CARD ──────────────────── */
+      .ai {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
+        padding: 16px;
+      }
+      .ail {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--yel);
+        margin-bottom: 10px;
+      }
+      .aid {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--yel);
+      }
+      .ait {
+        font-size: 13.5px;
+        color: #c0c0c0;
+        line-height: 1.65;
+      }
+      .ait strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* ── SIMULATOR ────────────────── */
+      .sim {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
+        padding: 16px;
+      }
+      .sim-t {
+        font-family: "Syne", sans-serif;
         font-size: 15px;
         font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .sim-s {
+        font-size: 12px;
+        color: var(--sub);
+        margin-bottom: 16px;
+      }
+      .slr {
+        margin-bottom: 14px;
+      }
+      .slh {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 7px;
+      }
+      .sln {
+        font-size: 13px;
+        color: #bbb;
+      }
+      .slv {
         font-family: "Syne", sans-serif;
-        color: var(--text);
+        font-size: 15px;
+        font-weight: 700;
       }
       input[type="range"] {
         -webkit-appearance: none;
         width: 100%;
-        height: 4px;
-        background: var(--border);
+        height: 3px;
+        background: var(--s3);
         border-radius: 2px;
         outline: none;
         cursor: pointer;
       }
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: var(--purple);
+        width: 18px;
+        height: 18px;
+        background: var(--pur);
         border-radius: 50%;
-        border: 2px solid #0f0f0f;
+        border: 2px solid var(--bg);
       }
-      .sim-result {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 16px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+      .sim-res {
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 10px;
+        padding: 14px;
         margin-top: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
-      .sim-metric .label {
-        font-size: 11px;
-        color: var(--muted);
-        margin-bottom: 4px;
+      .sim-rl {
+        font-size: 12px;
+        color: var(--sub);
       }
-      .sim-metric .value {
-        font-size: 18px;
-        font-weight: 800;
+      .sim-rv {
         font-family: "Syne", sans-serif;
-      }
-      .sim-metric .value.green {
+        font-size: 22px;
+        font-weight: 800;
         color: var(--green);
       }
-      .sim-metric .value.yellow {
-        color: var(--yellow);
-      }
 
-      /* ── ALERTS ─────────────────────────── */
-      .alerts-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
+      /* ── ALERTS ───────────────────── */
+      .alc {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
         overflow: hidden;
       }
-      .alerts-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--border);
-      }
-      .alerts-header h3 {
-        font-size: 14px;
-        font-weight: 700;
-      }
-      .alert-badge {
-        background: rgba(239, 68, 68, 0.15);
-        color: var(--red);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        font-size: 11px;
-        font-weight: 700;
-        padding: 2px 8px;
-        border-radius: 20px;
-      }
-      .alert-item {
+      .alr {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--border);
+        padding: 13px 16px;
+        border-bottom: 1px solid var(--bd);
         gap: 12px;
       }
-      .alert-item:last-child {
+      .alr:last-child {
         border-bottom: none;
       }
-      .alert-ing {
-        font-size: 13px;
-        font-weight: 500;
+      .all {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        flex: 1;
+        min-width: 0;
       }
-      .alert-prov {
-        font-size: 11px;
-        color: var(--muted);
-        margin-top: 2px;
-      }
-      .alert-right {
-        text-align: right;
+      .ale {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--s2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
         flex-shrink: 0;
       }
-      .alert-pct {
-        font-size: 16px;
-        font-weight: 800;
+      .aln {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .ali {
+        font-size: 11px;
+        color: var(--sub);
+        margin-top: 2px;
+      }
+      .alp {
         font-family: "Syne", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
         color: var(--red);
       }
-      .alert-prices {
-        font-size: 11px;
-        color: var(--muted);
-      }
 
-      /* ── PLATILLOS ──────────────────────── */
-      .platillos-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
+      /* ── PLATILLOS ────────────────── */
+      .plc {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r);
         overflow: hidden;
       }
-      .platillos-header {
+      .plr {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--bd);
+        display: none;
+      }
+      .plr.v {
+        display: block;
+      }
+      .plr:last-child {
+        border-bottom: none;
+      }
+      .plt {
         display: flex;
         justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+      .pln {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.3;
+        flex: 1;
+      }
+      .plrr {
+        display: flex;
         align-items: center;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--border);
+        gap: 7px;
+        flex-shrink: 0;
       }
-      .platillos-header h3 {
+      .plp {
+        font-family: "Syne", sans-serif;
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 800;
       }
-      .filter-pills {
+      .plb {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 6px;
+        letter-spacing: 0.04em;
+      }
+      .br {
+        color: var(--red);
+        background: var(--rd);
+      }
+      .by {
+        color: var(--yel);
+        background: rgba(245, 158, 11, 0.12);
+      }
+      .bg {
+        color: var(--green);
+        background: var(--gd);
+      }
+      .cr {
+        color: var(--red);
+      }
+      .cy {
+        color: var(--yel);
+      }
+      .cg {
+        color: var(--green);
+      }
+      .pls {
+        font-size: 11px;
+        color: var(--sub);
+        margin-bottom: 7px;
+        line-height: 1.4;
+      }
+      .pg {
+        height: 3px;
+        background: var(--s3);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .pf {
+        height: 100%;
+        border-radius: 2px;
+      }
+      .fr {
+        background: var(--red);
+      }
+      .fy {
+        background: var(--yel);
+      }
+      .fg {
+        background: var(--green);
+      }
+
+      /* pills */
+      .pills {
         display: flex;
         gap: 6px;
       }
       .pill {
         font-size: 11px;
-        padding: 3px 10px;
+        font-weight: 500;
+        padding: 4px 11px;
         border-radius: 20px;
         cursor: pointer;
-        border: 1px solid var(--border);
+        border: 1px solid var(--bd);
         background: transparent;
-        color: var(--muted);
+        color: var(--sub);
         font-family: "DM Sans", sans-serif;
-        transition: all 0.2s;
       }
-      .pill.active {
-        background: var(--surface2);
+      .pill.on {
+        background: var(--s2);
         color: var(--text);
-        border-color: #444;
-      }
-      .plat-item {
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--border);
-        display: none;
-      }
-      .plat-item.visible {
-        display: block;
-      }
-      .plat-item:last-child {
-        border-bottom: none;
-      }
-      .plat-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-        gap: 8px;
-      }
-      .plat-name {
-        font-size: 13px;
-        font-weight: 500;
-        flex: 1;
-      }
-      .plat-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-      .plat-pct {
-        font-size: 14px;
-        font-weight: 800;
-        font-family: "Syne", sans-serif;
-      }
-      .plat-status {
-        font-size: 10px;
-        font-weight: 700;
-        padding: 2px 7px;
-        border-radius: 8px;
-      }
-      .status-alto {
-        color: var(--red);
-        background: rgba(239, 68, 68, 0.12);
-      }
-      .status-revisar {
-        color: var(--yellow);
-        background: rgba(234, 179, 8, 0.12);
-      }
-      .status-ok {
-        color: var(--green);
-        background: rgba(34, 197, 94, 0.12);
-      }
-      .pct-red {
-        color: var(--red);
-      }
-      .pct-yellow {
-        color: var(--yellow);
-      }
-      .pct-green {
-        color: var(--green);
-      }
-      .progress-bar {
-        height: 4px;
-        background: var(--border);
-        border-radius: 2px;
-        overflow: hidden;
-      }
-      .progress-fill {
-        height: 100%;
-        border-radius: 2px;
-        transition: width 0.4s ease;
-      }
-      .fill-red {
-        background: var(--red);
-      }
-      .fill-yellow {
-        background: var(--yellow);
-      }
-      .fill-green {
-        background: var(--green);
+        border-color: #3a3a3a;
       }
 
-      /* ── FAB ────────────────────────────── */
-      .fab {
+      /* ── BOTTOM ───────────────────── */
+      .bot {
         position: fixed;
-        bottom: calc(24px + var(--safe-bot));
-        right: 20px;
-        background: var(--purple);
-        color: #fff;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 430px;
+        background: linear-gradient(to top, var(--bg) 65%, transparent);
+        padding: 14px 16px calc(18px + var(--sb));
+        z-index: 100;
+      }
+      .fbtn {
+        width: 100%;
+        height: 52px;
+        border-radius: 14px;
         border: none;
-        border-radius: 28px;
-        height: 56px;
-        padding: 0 22px 0 18px;
+        background: var(--text);
+        color: var(--bg);
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 8px;
-        font-family: "DM Sans", sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
         cursor: pointer;
-        z-index: 100;
-        transition:
-          transform 0.15s,
-          box-shadow 0.15s;
+        transition: opacity 0.15s;
       }
-      .fab:active {
-        transform: scale(0.96);
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+      .fbtn:active {
+        opacity: 0.82;
+      }
+      .upd {
+        text-align: center;
+        font-size: 11px;
+        color: var(--sub2);
+        margin-top: 8px;
       }
 
-      /* ── MODAL ──────────────────────────── */
-      .modal-overlay {
+      /* ── MODAL ────────────────────── */
+      .ov {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.82);
         display: none;
         align-items: flex-end;
         justify-content: center;
         z-index: 200;
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(6px);
       }
-      .modal-overlay.open {
+      .ov.open {
         display: flex;
       }
-      .modal {
-        background: #1c1c1c;
-        border-radius: 24px 24px 0 0;
+      .mod {
+        background: var(--s1);
+        border-radius: 20px 20px 0 0;
         width: 100%;
-        max-width: 480px;
-        padding: 12px 20px calc(32px + var(--safe-bot));
-        border-top: 1px solid var(--border);
-        animation: slide-up 0.25s ease;
+        max-width: 430px;
+        padding: 10px 18px calc(28px + var(--sb));
+        border-top: 1px solid var(--bd);
+        animation: up 0.22s ease;
       }
-      @keyframes slide-up {
+      @keyframes up {
         from {
           transform: translateY(100%);
         }
@@ -653,571 +597,520 @@
           transform: translateY(0);
         }
       }
-      .modal-handle {
-        width: 36px;
-        height: 4px;
-        background: #444;
+      .mh {
+        width: 32px;
+        height: 3px;
+        background: var(--s3);
         border-radius: 2px;
-        margin: 0 auto 20px;
+        margin: 0 auto 18px;
       }
-      .modal h3 {
+      .mt {
+        font-family: "Syne", sans-serif;
         font-size: 18px;
         font-weight: 800;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
       }
-      .modal p {
+      .ms {
         font-size: 13px;
-        color: var(--muted);
-        margin-bottom: 20px;
+        color: var(--sub);
+        margin-bottom: 18px;
         line-height: 1.5;
       }
-      .modal-btns {
+      .mbs {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
       }
-      .modal-btn {
+      .mb {
         display: flex;
         align-items: center;
         gap: 12px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 16px 18px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 12px;
+        padding: 14px 16px;
         cursor: pointer;
         transition: border-color 0.15s;
-        font-family: "DM Sans", sans-serif;
       }
-      .modal-btn:hover {
-        border-color: var(--purple);
+      .mb:hover {
+        border-color: var(--pur);
       }
-      .modal-btn-icon {
-        font-size: 22px;
-        width: 36px;
+      .mi {
+        font-size: 20px;
+        width: 32px;
         text-align: center;
       }
-      .modal-btn-text h4 {
+      .mif h4 {
         font-size: 14px;
         font-weight: 600;
         color: var(--text);
         margin-bottom: 2px;
       }
-      .modal-btn-text p {
+      .mif p {
         font-size: 12px;
-        color: var(--muted);
-        margin: 0;
+        color: var(--sub);
       }
-      .modal-cancel {
-        margin-top: 4px;
+      .mc {
+        margin-top: 6px;
         width: 100%;
-        background: transparent;
+        background: none;
         border: none;
-        color: var(--muted);
+        color: var(--sub);
         font-size: 14px;
         font-family: "DM Sans", sans-serif;
         padding: 10px;
         cursor: pointer;
       }
+
+      #toast {
+        position: fixed;
+        bottom: 110px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: #1e1e1e;
+        color: #fff;
+        padding: 9px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        opacity: 0;
+        transition: all 0.25s;
+        z-index: 300;
+        white-space: nowrap;
+        pointer-events: none;
+        border: 1px solid var(--bd);
+      }
     </style>
   </head>
   <body>
-    <!-- ── HEADER ── -->
-    <header class="header">
-      <div class="header-top">
-        <div class="header-info">
-          <h1>Margen</h1>
-          <h2>Dogos y Monos</h2>
-          <p class="subtitle">Semana del 24 — 30 mar 2026</p>
+    <!-- HEADER -->
+    <header class="hdr">
+      <div class="hdr-top">
+        <div>
+          <div class="hdr-brand">Margen</div>
+          <div class="hdr-name">Dogos y Monos</div>
+          <div class="hdr-meta">
+            FC promedio 25.9% &middot; 12 platillos en rojo &middot; semana 13
+          </div>
         </div>
-        <div class="score-ring">
-          <svg viewBox="0 0 88 88" width="88" height="88">
-            <circle class="ring-track" cx="44" cy="44" r="38" />
-            <circle
-              class="ring-fill"
-              cx="44"
-              cy="44"
-              r="38"
-              id="ringFill"
-              stroke="#22c55e"
-              stroke-dasharray="238.76"
-              stroke-dashoffset="83.6"
-            />
+        <div class="rw">
+          <svg viewBox="0 0 72 72" width="72" height="72">
+            <circle class="rt" cx="36" cy="36" r="32" />
+            <circle class="rf" cx="36" cy="36" r="32" />
           </svg>
-          <div class="score-inner">
-            <span class="score-num" id="scoreNum">74</span>
-            <span class="score-label">Score</span>
+          <div class="ri">
+            <span class="rn">74</span><span class="rl">Score</span>
           </div>
         </div>
       </div>
-      <div class="badge-strip">
-        <span class="badge"
-          ><span class="dot" style="background: var(--green)"></span>FC
+      <div class="tags">
+        <span class="tag"
+          ><span class="d" style="background: var(--green)"></span>FC
           25.9%</span
         >
-        <span class="badge"
-          ><span class="dot" style="background: var(--red)"></span>12 ALTO</span
+        <span class="tag"
+          ><span class="d" style="background: var(--red)"></span>12 ALTO</span
         >
-        <span class="badge"
-          ><span class="dot" style="background: var(--yellow)"></span>10
+        <span class="tag"
+          ><span class="d" style="background: var(--yel)"></span>10
           REVISAR</span
         >
       </div>
     </header>
 
-    <!-- ── CONTENT ── -->
-    <main class="content">
-      <!-- KPIs -->
-      <div class="kpi-row">
-        <div class="kpi-card danger">
-          <div class="kpi-label">Perdiendo hoy</div>
-          <div class="kpi-val">$847</div>
-          <div class="kpi-sub">vs FC objetivo 28%</div>
+    <!-- IMPACTO FINANCIERO -->
+    <div class="sec">
+      <div class="sh"><span class="sl">Impacto financiero</span></div>
+      <div class="kgrid">
+        <div class="kc r">
+          <div class="kl">Perdida estimada</div>
+          <div class="kv">$8,420</div>
+          <div class="ks">esta semana &middot; MXN</div>
         </div>
-        <div class="kpi-card success">
-          <div class="kpi-label">A recuperar</div>
-          <div class="kpi-val">$24.3k</div>
-          <div class="kpi-sub">potencial al mes</div>
+        <div class="kc g">
+          <div class="kl">Potencial recuperable</div>
+          <div class="kv">$6,180</div>
+          <div class="ks">si bajas FC a 30%</div>
+        </div>
+        <div class="kc">
+          <div class="kl">Mejor platillo</div>
+          <div class="kv" style="font-size: 20px; color: var(--green)">
+            Alitas
+          </div>
+          <div class="ks">27.8% FC &middot; empuja más ventas</div>
+        </div>
+        <div class="kc p">
+          <div class="kl">Acción rápida</div>
+          <div class="kv">+$25</div>
+          <div class="ks">al 2x1 recupera $3,200/mes</div>
         </div>
       </div>
+    </div>
 
-      <!-- AI Card -->
-      <div class="section-label">Análisis IA</div>
-      <div class="ai-card">
-        <div class="ai-card-header">
-          <div class="ai-icon">✦</div>
-          <h3>Resumen de esta semana</h3>
-        </div>
-        <p class="ai-body">
-          Tu menú tiene un FC promedio de <strong>25.9%</strong> — dentro del
-          rango ideal. Sin embargo,
-          <strong>12 platillos superan el 35%</strong>, concentrados en
-          hamburguesas y alitas DIDI. La mayor oportunidad está en el
-          <strong>2x1 Hamburguesa (69.4%)</strong>: ajustar el precio o reducir
-          el gramaje del pan podría recuperar
-          <strong>$8–12 MXN por orden</strong>. Las alzas del jitomate (+27%) y
-          aguacate (+15%) ya están afectando tus tacos y guacamole — considera
-          actualizar precios esta semana.
+    <!-- MARGEN AI -->
+    <div class="sec">
+      <div class="sh"><span class="sl">Análisis</span></div>
+      <div class="ai">
+        <div class="ail"><span class="aid"></span>Margen AI</div>
+        <p class="ait">
+          Esta semana dejaste ir <strong>$8,420 MXN</strong> en food cost
+          innecesario. Solo con ajustar el precio del
+          <strong>2x1 Hamburguesa +$25</strong> recuperas
+          <strong>$3,200 al mes</strong>. Las alitas son tu mejor carta —
+          empújalas. El jitomate subió <strong>+27%</strong>; actualiza precios
+          esta semana.
         </p>
       </div>
+    </div>
 
-      <!-- Trigger Cards -->
-      <div class="section-label">Alertas clave</div>
-      <div class="trigger-grid">
-        <div class="trigger-card red">
-          <div class="trigger-icon">🔴</div>
-          <div class="trigger-type">Pérdida mayor</div>
-          <div class="trigger-title">2x1 Hamburguesa</div>
-          <div class="trigger-val">69.4%</div>
-          <div class="trigger-sub">FC crítico — revisar precio</div>
-        </div>
-        <div class="trigger-card green">
-          <div class="trigger-icon">💚</div>
-          <div class="trigger-type">Oportunidad</div>
-          <div class="trigger-title">Sube precio Alitas 1kg</div>
-          <div class="trigger-val">+$15</div>
-          <div class="trigger-sub">bajaría FC a 40.5%</div>
-        </div>
-        <div class="trigger-card purple">
-          <div class="trigger-icon">⭐</div>
-          <div class="trigger-type">Mejor platillo</div>
-          <div class="trigger-title">Pa Compartir</div>
-          <div class="trigger-val">0.95%</div>
-          <div class="trigger-sub">margen brutal — empújalo</div>
-        </div>
-        <div class="trigger-card yellow">
-          <div class="trigger-icon">⚡</div>
-          <div class="trigger-type">Acción rápida</div>
-          <div class="trigger-title">Actualizar jitomate</div>
-          <div class="trigger-val">+27%</div>
-          <div class="trigger-sub">captura precio en factura</div>
-        </div>
-      </div>
-
-      <!-- Simulator -->
-      <div class="section-label">Simulador</div>
-      <div class="simulator">
-        <h3>¿Qué pasa si…?</h3>
-        <p class="sim-sub">Ajusta los sliders y ve el impacto en tiempo real</p>
-
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">FC objetivo</span>
-            <span class="slider-val" id="fcLabel">28%</span>
+    <!-- SIMULADOR -->
+    <div class="sec">
+      <div class="sh"><span class="sl">Simulador de precio</span></div>
+      <div class="sim">
+        <div class="sim-t">¿Cuánto ganarías?</div>
+        <div class="sim-s">Mueve los sliders y ve el impacto</div>
+        <div class="slr">
+          <div class="slh">
+            <span class="sln">FC objetivo</span>
+            <span class="slv" id="fcLbl">28%</span>
           </div>
-          <input type="range" id="fcSlider" min="18" max="45" value="28" />
+          <input type="range" id="fcS" min="18" max="45" value="28" />
         </div>
-
-        <div class="slider-row">
-          <div class="slider-header">
-            <span class="slider-label">Ventas / mes</span>
-            <span class="slider-val" id="ventasLabel">$180,000</span>
+        <div class="slr">
+          <div class="slh">
+            <span class="sln">Ventas / mes</span>
+            <span class="slv" id="vLbl">$300k</span>
           </div>
           <input
             type="range"
-            id="ventasSlider"
+            id="vS"
             min="50"
-            max="500"
-            value="180"
+            max="600"
+            value="300"
             step="10"
           />
         </div>
-
-        <div class="sim-result">
-          <div class="sim-metric">
-            <div class="label">Costo de insumos</div>
-            <div class="value yellow" id="costoResult">$50,400</div>
-          </div>
-          <div class="sim-metric">
-            <div class="label">Margen bruto</div>
-            <div class="value green" id="margenResult">$129,600</div>
-          </div>
-          <div class="sim-metric">
-            <div class="label">vs. hoy (25.9%)</div>
-            <div class="value green" id="deltaResult">+$3,780</div>
-          </div>
-          <div class="sim-metric">
-            <div class="label">Ahorro anual</div>
-            <div class="value green" id="anualResult">+$45,360</div>
-          </div>
+        <div class="sim-res">
+          <span class="sim-rl">Utilidad adicional mensual</span>
+          <span class="sim-rv" id="util">+$6,270</span>
         </div>
       </div>
+    </div>
 
-      <!-- Price Alerts -->
-      <div class="section-label">Alzas de precio</div>
-      <div class="alerts-card">
-        <div class="alerts-header">
-          <h3>Ingredientes con alza</h3>
-          <span class="alert-badge">6 alertas</span>
+    <!-- ALZAS DE PRECIO -->
+    <div class="sec">
+      <div class="sh">
+        <span class="sl">Alzas de precio</span>
+        <span class="slink">ver todo</span>
+      </div>
+      <div class="alc">
+        <div class="alr">
+          <div class="all">
+            <div class="ale">🍅</div>
+            <div>
+              <div class="aln">Jitomate</div>
+              <div class="ali">Impacta +$340 en costos esta semana</div>
+            </div>
+          </div>
+          <div class="alp">+27%</div>
         </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Jitomate</div>
-            <div class="alert-prov">Mercado · kg</div>
+        <div class="alr">
+          <div class="all">
+            <div class="ale">🥑</div>
+            <div>
+              <div class="aln">Aguacate</div>
+              <div class="ali">Impacta +$210 en costos esta semana</div>
+            </div>
           </div>
-          <div class="alert-right">
-            <div class="alert-pct">+27.3%</div>
-            <div class="alert-prices">$22 → $28</div>
-          </div>
+          <div class="alp">+14%</div>
         </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Cebolla blanca</div>
-            <div class="alert-prov">Mercado · kg</div>
+        <div class="alr">
+          <div class="all">
+            <div class="ale">🍗</div>
+            <div>
+              <div class="aln">Pollo (pechuga)</div>
+              <div class="ali">Impacta +$180 en costos esta semana</div>
+            </div>
           </div>
-          <div class="alert-right">
-            <div class="alert-pct">+20%</div>
-            <div class="alert-prices">$15 → $18</div>
-          </div>
-        </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Aguacate</div>
-            <div class="alert-prov">Mercado · kg</div>
-          </div>
-          <div class="alert-right">
-            <div class="alert-pct">+14.6%</div>
-            <div class="alert-prices">$48 → $55</div>
-          </div>
-        </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Aceite vegetal</div>
-            <div class="alert-prov">Nutrioli · lt</div>
-          </div>
-          <div class="alert-right">
-            <div class="alert-pct">+8.6%</div>
-            <div class="alert-prices">$35 → $38</div>
-          </div>
-        </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Pollo (pechuga)</div>
-            <div class="alert-prov">Bachoco · kg</div>
-          </div>
-          <div class="alert-right">
-            <div class="alert-pct">+6.5%</div>
-            <div class="alert-prices">$92 → $98</div>
-          </div>
-        </div>
-        <div class="alert-item">
-          <div>
-            <div class="alert-ing">Crema</div>
-            <div class="alert-prov">Lala · lt</div>
-          </div>
-          <div class="alert-right">
-            <div class="alert-pct">+5%</div>
-            <div class="alert-prices">$40 → $42</div>
-          </div>
+          <div class="alp">+6%</div>
         </div>
       </div>
+    </div>
 
-      <!-- Platillos -->
-      <div class="section-label">Platillos</div>
-      <div class="platillos-card">
-        <div class="platillos-header">
-          <h3>Food Cost</h3>
-          <div class="filter-pills">
-            <button class="pill active" onclick="filterPlatos('all', this)">
-              Todos
-            </button>
-            <button class="pill" onclick="filterPlatos('alto', this)">
-              Alto
-            </button>
-            <button class="pill" onclick="filterPlatos('ok', this)">OK</button>
-          </div>
+    <!-- PLATILLOS -->
+    <div class="sec">
+      <div class="sh">
+        <span class="sl">Platillos por food cost</span>
+        <div class="pills">
+          <button class="pill on" onclick="fil('all', this)">Todos</button>
+          <button class="pill" onclick="fil('alto', this)">Alto</button>
+          <button class="pill" onclick="fil('ok', this)">OK</button>
         </div>
-        <!-- platillos generados por JS -->
-        <div id="platos-list"></div>
       </div>
-    </main>
+      <div class="plc" id="plist"></div>
+    </div>
 
-    <!-- FAB -->
-    <button class="fab" onclick="openModal()">
-      <span>📷</span>
-      <span>Subir factura</span>
-    </button>
+    <!-- BOTTOM -->
+    <div class="bot">
+      <button class="fbtn" onclick="openM()">
+        📷&nbsp;&nbsp;Subir factura
+      </button>
+      <div class="upd">Actualizado hace 2 horas &middot; lun 30 mar 2026</div>
+    </div>
 
-    <!-- Modal -->
-    <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-      <div class="modal">
-        <div class="modal-handle"></div>
-        <h3>Subir factura</h3>
-        <p>
-          Claude extrae los precios automáticamente y actualiza tu food cost en
-          segundos.
+    <!-- MODAL -->
+    <div class="ov" id="ov" onclick="closeOut(event)">
+      <div class="mod">
+        <div class="mh"></div>
+        <div class="mt">Subir factura</div>
+        <p class="ms">
+          Claude extrae los precios automáticamente y recalcula tu food cost.
         </p>
-        <div class="modal-btns">
-          <button class="modal-btn" onclick="showToast('Abriendo cámara…')">
-            <span class="modal-btn-icon">📷</span>
-            <div class="modal-btn-text">
+        <div class="mbs">
+          <button class="mb" onclick="showToast('Abriendo cámara…')">
+            <span class="mi">📷</span>
+            <div class="mif">
               <h4>Tomar foto</h4>
-              <p>Fotografía la factura de tu proveedor</p>
+              <p>Fotografía la factura del proveedor</p>
             </div>
           </button>
-          <button
-            class="modal-btn"
-            onclick="showToast('Selecciona tu archivo…')"
-          >
-            <span class="modal-btn-icon">📄</span>
-            <div class="modal-btn-text">
+          <button class="mb" onclick="showToast('Selecciona tu archivo…')">
+            <span class="mi">📄</span>
+            <div class="mif">
               <h4>Subir archivo</h4>
-              <p>PDF, imagen o XML de la factura</p>
+              <p>PDF, imagen o XML</p>
             </div>
           </button>
           <button
-            class="modal-btn"
-            onclick="showToast('Abre WhatsApp Business para mandar tu foto…')"
+            class="mb"
+            onclick="showToast('Abre WhatsApp para mandar la foto…')"
           >
-            <span class="modal-btn-icon">💬</span>
-            <div class="modal-btn-text">
+            <span class="mi">💬</span>
+            <div class="mif">
               <h4>Enviar por WhatsApp</h4>
               <p>Manda la foto al número de Margen</p>
             </div>
           </button>
         </div>
-        <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+        <button class="mc" onclick="closeM()">Cancelar</button>
       </div>
     </div>
 
-    <!-- Toast -->
-    <div
-      id="toast"
-      style="
-        position: fixed;
-        bottom: 100px;
-        left: 50%;
-        transform: translateX(-50%) translateY(20px);
-        background: #333;
-        color: #fff;
-        padding: 10px 18px;
-        border-radius: 20px;
-        font-size: 13px;
-        opacity: 0;
-        transition: all 0.3s;
-        z-index: 300;
-        white-space: nowrap;
-        pointer-events: none;
-      "
-    ></div>
+    <div id="toast"></div>
 
     <script>
-      // ── DATA ──────────────────────────────────────────
-      const platillos = [
-        { nombre: "2x1 Hamburguesa", pct: 69.44, status: "alto" },
-        { nombre: "Hamburguesa clásica DIDI!", pct: 56.77, status: "alto" },
-        { nombre: "Dogo Chilango sencillo DIDI!", pct: 52.32, status: "alto" },
-        { nombre: "Alitas 1kg DIDI!!", pct: 49.88, status: "alto" },
-        { nombre: "Hamburguesa Double Bacon", pct: 44.24, status: "alto" },
-        { nombre: "Paquete alitas 25 + papas", pct: 42.97, status: "alto" },
-        { nombre: "Alitas 1/2 K DIDI!!", pct: 42.22, status: "alto" },
-        { nombre: "Hamburguesa Clasica!", pct: 38.48, status: "alto" },
-        { nombre: "Papas Mono Especial!", pct: 37.3, status: "alto" },
-        { nombre: "Hamburguesa Dulce orangután", pct: 37.27, status: "alto" },
-        { nombre: "Hamburguesa 4 quesos DIDI!", pct: 37.27, status: "alto" },
-        { nombre: "Hamburguesa simio furioso", pct: 37.27, status: "alto" },
-        { nombre: "Hamburguesa Molokai!", pct: 32.09, status: "revisar" },
-        { nombre: "Alitas 25 pzas", pct: 31.77, status: "revisar" },
-        { nombre: "Dogo Hawaiiano!", pct: 31.35, status: "revisar" },
-        { nombre: "Dogo BBQ Lovers!", pct: 31.35, status: "revisar" },
-        { nombre: "Dogo choriqueso!", pct: 31.35, status: "revisar" },
-        { nombre: "Dogo Chilango!", pct: 31.35, status: "revisar" },
-        { nombre: "Papas Jumbo!", pct: 30.0, status: "revisar" },
-        { nombre: "Doble Bacon Cheese", pct: 29.4, status: "revisar" },
-        { nombre: "Dogo Nogada", pct: 28.65, status: "revisar" },
-        { nombre: "Dogo Italiano!", pct: 28.63, status: "revisar" },
-        { nombre: "Dogo Chilango", pct: 27.89, status: "ok" },
-        { nombre: "Alitas 16 pzas", pct: 27.76, status: "ok" },
-        { nombre: "Papas D&M DIDI!", pct: 26.5, status: "ok" },
-        { nombre: "Papas Mahao", pct: 25.38, status: "ok" },
-        { nombre: "Dogo Cheesy Bacon!", pct: 25.32, status: "ok" },
-        { nombre: "Hamburguesa choriqueso!", pct: 24.77, status: "ok" },
-        { nombre: "Papas Chicas!", pct: 24.0, status: "ok" },
-        { nombre: "Dogo Spicy", pct: 23.51, status: "ok" },
-        { nombre: "Hamburguesa 4 quesos!", pct: 21.83, status: "ok" },
-        { nombre: "Cerveza 1/2 litro", pct: 21.43, status: "ok" },
-        { nombre: "Papas con queso", pct: 20.17, status: "ok" },
-        { nombre: "Tritón de cerveza", pct: 19.13, status: "ok" },
-        { nombre: "Megatarro", pct: 19.09, status: "ok" },
-        { nombre: "Alitas 7pzas", pct: 17.85, status: "ok" },
-        { nombre: "Jarra 2 litros", pct: 17.26, status: "ok" },
-        { nombre: "Tarro de cerveza", pct: 13.56, status: "ok" },
-        { nombre: "Nachos con Carne", pct: 11.18, status: "ok" },
-        { nombre: "Paquete Poliahu", pct: 7.11, status: "ok" },
-        { nombre: "Paquete Domingo", pct: 5.95, status: "ok" },
-        { nombre: "Promo tritón", pct: 1.99, status: "ok" },
-        { nombre: "Pa Compartir", pct: 0.95, status: "ok" },
+      const P = [
+        {
+          n: "2x1 Hamburguesa",
+          p: 69.4,
+          s: "alto",
+          t: "Perdiendo -$42 por venta · sube $25 el precio",
+        },
+        {
+          n: "Hamburguesa clásica DIDI",
+          p: 56.8,
+          s: "alto",
+          t: "Perdiendo -$24 por venta · revisa gramaje",
+        },
+        {
+          n: "Alitas 1kg DIDI",
+          p: 49.9,
+          s: "alto",
+          t: "Perdiendo -$39 por venta · sube $15 el precio",
+        },
+        {
+          n: "Hamburguesa Double Bacon",
+          p: 44.2,
+          s: "alto",
+          t: "Perdiendo -$18 por venta · evalúa precio",
+        },
+        {
+          n: "Paquete alitas 25 + papas",
+          p: 43.0,
+          s: "alto",
+          t: "Perdiendo -$25 por venta · ajusta combo",
+        },
+        {
+          n: "Alitas 1/2 K DIDI",
+          p: 42.2,
+          s: "alto",
+          t: "Perdiendo -$12 por venta · sube $10",
+        },
+        {
+          n: "Hamburguesa Clasica",
+          p: 38.5,
+          s: "alto",
+          t: "Perdiendo -$9 por venta · margen ajustado",
+        },
+        {
+          n: "Papas Mono Especial",
+          p: 37.3,
+          s: "alto",
+          t: "Perdiendo -$7 por venta · revisa receta",
+        },
+        {
+          n: "Hamburguesa Molokai",
+          p: 32.1,
+          s: "revisar",
+          t: "En zona de revisión · monitorea esta semana",
+        },
+        {
+          n: "Alitas 25 pzas",
+          p: 31.8,
+          s: "revisar",
+          t: "En zona de revisión · ok por volumen",
+        },
+        { n: "Dogo Chilango", p: 31.4, s: "revisar", t: "En zona de revisión" },
+        { n: "Papas Jumbo", p: 30.0, s: "revisar", t: "En zona de revisión" },
+        {
+          n: "Alitas 16 pzas",
+          p: 27.8,
+          s: "ok",
+          t: "Mejor margen · $158 de ganancia por venta",
+        },
+        {
+          n: "Papas D&M DIDI",
+          p: 26.5,
+          s: "ok",
+          t: "Buen margen · $66 de ganancia por venta",
+        },
+        {
+          n: "Dogo Cheesy Bacon",
+          p: 25.3,
+          s: "ok",
+          t: "Buen margen · $97 de ganancia por venta",
+        },
+        {
+          n: "Hamburguesa choriqueso",
+          p: 24.8,
+          s: "ok",
+          t: "Buen margen · $112 de ganancia por venta",
+        },
+        {
+          n: "Cerveza 1/2 litro",
+          p: 21.4,
+          s: "ok",
+          t: "Excelente margen · $38 de ganancia",
+        },
+        {
+          n: "Tritón de cerveza",
+          p: 19.1,
+          s: "ok",
+          t: "Excelente margen · $444 de ganancia",
+        },
+        {
+          n: "Alitas 7pzas",
+          p: 17.9,
+          s: "ok",
+          t: "Excelente margen · $122 de ganancia",
+        },
+        {
+          n: "Tarro de cerveza",
+          p: 13.6,
+          s: "ok",
+          t: "Excelente margen · $47 de ganancia",
+        },
+        {
+          n: "Nachos con Carne",
+          p: 11.2,
+          s: "ok",
+          t: "Excelente margen · $150 de ganancia",
+        },
+        {
+          n: "Pa Compartir",
+          p: 0.95,
+          s: "ok",
+          t: "Margen brutal · $197 de ganancia",
+        },
       ];
 
-      // ── RENDER PLATILLOS ──────────────────
-      function colorClass(s) {
-        return s === "alto"
-          ? "pct-red"
-          : s === "revisar"
-            ? "pct-yellow"
-            : "pct-green";
+      function cc(s) {
+        return s === "alto" ? "cr" : s === "revisar" ? "cy" : "cg";
       }
-      function fillClass(s) {
-        return s === "alto"
-          ? "fill-red"
-          : s === "revisar"
-            ? "fill-yellow"
-            : "fill-green";
+      function bc(s) {
+        return s === "alto" ? "br" : s === "revisar" ? "by" : "bg";
       }
-      function statusLabel(s) {
-        if (s === "alto")
-          return '<span class="plat-status status-alto">ALTO</span>';
-        if (s === "revisar")
-          return '<span class="plat-status status-revisar">REVISAR</span>';
-        return '<span class="plat-status status-ok">OK</span>';
+      function fc(s) {
+        return s === "alto" ? "fr" : s === "revisar" ? "fy" : "fg";
+      }
+      function lbl(s) {
+        const m = { alto: "ALTO", revisar: "REVISAR", ok: "OK" };
+        return `<span class="plb ${bc(s)}">${m[s]}</span>`;
       }
 
-      function renderPlatos() {
-        const list = document.getElementById("platos-list");
-        list.innerHTML = platillos
-          .map(
-            (p) => `
-    <div class="plat-item visible" data-status="${p.status}">
-      <div class="plat-row">
-        <span class="plat-name">${p.nombre}</span>
-        <div class="plat-right">
-          <span class="plat-pct ${colorClass(p.status)}">${p.pct}%</span>
-          ${statusLabel(p.status)}
-        </div>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill ${fillClass(p.status)}" style="width:${Math.min(p.pct, 100)}%"></div>
-      </div>
+      document.getElementById("plist").innerHTML = P.map(
+        (p) => `
+  <div class="plr v" data-s="${p.s}">
+    <div class="plt">
+      <span class="pln">${p.n}</span>
+      <div class="plrr"><span class="plp ${cc(p.s)}">${p.p}%</span>${lbl(p.s)}</div>
     </div>
-  `,
-          )
-          .join("");
-      }
+    <div class="pls">${p.t}</div>
+    <div class="pg"><div class="pf ${fc(p.s)}" style="width:${Math.min(p.p, 100)}%"></div></div>
+  </div>`,
+      ).join("");
 
-      let activeFilter = "all";
-      function filterPlatos(filter, btn) {
-        activeFilter = filter;
+      function fil(f, btn) {
         document
           .querySelectorAll(".pill")
-          .forEach((p) => p.classList.remove("active"));
-        btn.classList.add("active");
-        document.querySelectorAll(".plat-item").forEach((el) => {
+          .forEach((b) => b.classList.remove("on"));
+        btn.classList.add("on");
+        document.querySelectorAll(".plr").forEach((el) => {
           const show =
-            filter === "all" ||
-            (filter === "alto" &&
-              (el.dataset.status === "alto" ||
-                el.dataset.status === "revisar")) ||
-            (filter === "ok" && el.dataset.status === "ok");
-          el.classList.toggle("visible", show);
+            f === "all" ||
+            (f === "alto" &&
+              (el.dataset.s === "alto" || el.dataset.s === "revisar")) ||
+            (f === "ok" && el.dataset.s === "ok");
+          el.classList.toggle("v", show);
         });
       }
 
-      // ── SIMULATOR ──────────────────────────
-      const FC_HOY = 25.9;
-
-      function updateSim() {
-        const fc = parseInt(document.getElementById("fcSlider").value);
-        const v =
-          parseInt(document.getElementById("ventasSlider").value) * 1000;
-
-        document.getElementById("fcLabel").textContent = fc + "%";
-        document.getElementById("ventasLabel").textContent =
-          "$" + (v / 1000).toFixed(0) + ",000";
-
-        const costo = (v * fc) / 100;
-        const margen = v - costo;
-        const delta = (FC_HOY / 100 - fc / 100) * v;
-        const anual = delta * 12;
-
-        const fmt = (n) =>
-          (n >= 0 ? "+" : "") +
+      // Simulator
+      const HOY = 25.9;
+      function upd() {
+        const fc = +document.getElementById("fcS").value;
+        const v = +document.getElementById("vS").value * 1000;
+        document.getElementById("fcLbl").textContent = fc + "%";
+        document.getElementById("vLbl").textContent = "$" + v / 1000 + "k";
+        const d = (HOY / 100 - fc / 100) * v;
+        const el = document.getElementById("util");
+        el.textContent =
+          (d >= 0 ? "+" : "") +
           "$" +
-          Math.abs(n).toLocaleString("es-MX", { maximumFractionDigits: 0 });
+          Math.abs(d).toLocaleString("es-MX", { maximumFractionDigits: 0 });
+        el.style.color = d >= 0 ? "var(--green)" : "var(--red)";
+      }
+      document.getElementById("fcS").addEventListener("input", upd);
+      document.getElementById("vS").addEventListener("input", upd);
 
-        document.getElementById("costoResult").textContent =
-          "$" + costo.toLocaleString("es-MX", { maximumFractionDigits: 0 });
-        document.getElementById("margenResult").textContent =
-          "$" + margen.toLocaleString("es-MX", { maximumFractionDigits: 0 });
-        document.getElementById("deltaResult").textContent = fmt(delta);
-        document.getElementById("anualResult").textContent = fmt(anual);
-
-        document.getElementById("deltaResult").className =
-          "value " + (delta >= 0 ? "green" : "");
-        document.getElementById("anualResult").className =
-          "value " + (anual >= 0 ? "green" : "");
+      // Modal
+      function openM() {
+        document.getElementById("ov").classList.add("open");
+      }
+      function closeM() {
+        document.getElementById("ov").classList.remove("open");
+      }
+      function closeOut(e) {
+        if (e.target === e.currentTarget) closeM();
       }
 
-      document.getElementById("fcSlider").addEventListener("input", updateSim);
-      document
-        .getElementById("ventasSlider")
-        .addEventListener("input", updateSim);
-
-      // ── MODAL ──────────────────────────────
-      function openModal() {
-        document.getElementById("modal").classList.add("open");
-      }
-      function closeModal() {
-        document.getElementById("modal").classList.remove("open");
-      }
-      function closeModalOutside(e) {
-        if (e.target === e.currentTarget) closeModal();
-      }
-
-      // ── TOAST ──────────────────────────────
+      // Toast
       function showToast(msg) {
-        closeModal();
+        closeM();
         const t = document.getElementById("toast");
         t.textContent = msg;
-        t.style.opacity = "1";
-        t.style.transform = "translateX(-50%) translateY(0)";
+        Object.assign(t.style, {
+          opacity: "1",
+          transform: "translateX(-50%) translateY(0)",
+        });
         setTimeout(() => {
-          t.style.opacity = "0";
-          t.style.transform = "translateX(-50%) translateY(20px)";
-        }, 2500);
+          Object.assign(t.style, {
+            opacity: "0",
+            transform: "translateX(-50%) translateY(10px)",
+          });
+        }, 2200);
       }
 
-      // ── INIT ──────────────────────────────
-      renderPlatos();
-      updateSim();
+      upd();
     </script>
   </body>
 </html>
