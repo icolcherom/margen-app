@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -31,115 +31,119 @@
       }
 
       :root {
-        --bg: #0a0a0a;
-        --hdr: #0f0f0f;
-        --s1: #141414;
-        --s2: #1e1e1e;
-        --s3: #282828;
-        --bd: rgba(255, 255, 255, 0.08);
-        --text: #f2f2f2;
-        --sub: #999;
-        --sub2: #555;
+        /* header zone */
+        --hbg: #0a0a0a;
+        --hcard: #141414;
+        --hbd: #222222;
+        --htxt: #ffffff;
+        --hsub: #888888;
 
-        /* brand */
-        --green: #22c55e;
-        --red: #f43f5e;
-        --yel: #f59e0b;
-        --pur: #8b5cf6;
-        --teal: #14b8a6;
+        /* body zone */
+        --bbg: #f7f6f3;
+        --bcard: #ffffff;
+        --bbd: #ebebeb;
+        --btxt: #0a0a0a;
+        --bsub: #888888;
 
-        /* card backgrounds — saturados y oscuros */
-        --card-red-bg: #1a0408;
-        --card-red-bd: rgba(244, 63, 94, 0.35);
-        --card-grn-bg: #041a0b;
-        --card-grn-bd: rgba(34, 197, 94, 0.3);
-        --card-pur-bg: #0d0820;
-        --card-pur-bd: rgba(139, 92, 246, 0.3);
-        --card-neu-bg: #111118;
-        --card-neu-bd: rgba(255, 255, 255, 0.1);
+        /* semantic */
+        --red: #e5383b;
+        --green: #2d9e6b;
+        --amber: #e8871a;
+        --blue: #2563eb;
 
-        --r: 16px;
+        /* card backgrounds (impact) */
+        --cred: #1a0608;
+        --cgrn: #061a0e;
+        --camb: #1a0e06;
+        --cblu: #060e1a;
+
+        --r: 20px;
         --st: env(safe-area-inset-top, 0px);
         --sb: env(safe-area-inset-bottom, 0px);
       }
 
       html {
-        background: var(--bg);
+        background: var(--hbg);
       }
 
       body {
-        font-family: "DM Sans", sans-serif;
-        background: var(--bg);
-        color: var(--text);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        background: var(--bbg);
+        color: var(--btxt);
         min-height: 100dvh;
         max-width: 430px;
         margin: 0 auto;
-        padding-bottom: calc(96px + var(--sb));
+        padding-bottom: calc(100px + var(--sb));
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ── HEADER ───────────────────────────── */
+      /* ══════════════════════════════════════
+   HEADER — ZONA OSCURA
+══════════════════════════════════════ */
       .hdr {
-        background: var(--hdr);
-        border-bottom: 1px solid var(--bd);
-        padding: calc(18px + var(--st)) 20px 20px;
+        background: var(--hbg);
+        padding: calc(20px + var(--st)) 20px 24px;
       }
-      .hdr-top {
+
+      .hdr-row1 {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
       }
 
       .hdr-brand {
-        font-family: "Syne", sans-serif;
-        font-size: 13px;
-        font-weight: 800;
+        font-size: 11px;
+        font-weight: 700;
         letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--green);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
+
       .hdr-name {
-        font-family: "Syne", sans-serif;
-        font-size: 32px;
+        font-size: 30px;
         font-weight: 800;
-        color: var(--text);
+        color: var(--htxt);
+        letter-spacing: -1px;
         line-height: 1.05;
-        letter-spacing: -0.5px;
       }
+
       .hdr-meta {
         font-size: 12px;
-        color: var(--sub);
+        color: var(--hsub);
         margin-top: 6px;
         line-height: 1.5;
       }
 
-      /* ring */
-      .rw {
+      /* score ring */
+      .ring-wrap {
         position: relative;
-        width: 80px;
-        height: 80px;
+        width: 76px;
+        height: 76px;
         flex-shrink: 0;
-        margin-left: 12px;
       }
-      .rw svg {
+      .ring-wrap svg {
         transform: rotate(-90deg);
+        display: block;
       }
-      .rt {
+      .ring-track {
         fill: none;
         stroke: #222;
         stroke-width: 6;
       }
-      .rf {
+      .ring-fill {
         fill: none;
         stroke: var(--green);
         stroke-width: 6;
         stroke-linecap: round;
-        stroke-dasharray: 226.19;
-        stroke-dashoffset: 79.2;
+        stroke-dasharray: 213.63;
+        stroke-dashoffset: 74.8;
       }
-      .ri {
+      .ring-inner {
         position: absolute;
         inset: 0;
         display: flex;
@@ -147,227 +151,236 @@
         align-items: center;
         justify-content: center;
       }
-      .rn {
-        font-family: "Syne", sans-serif;
-        font-size: 26px;
+      .ring-num {
+        font-size: 24px;
         font-weight: 800;
+        color: var(--htxt);
         line-height: 1;
-        color: var(--text);
       }
-      .rl {
-        font-size: 9px;
-        color: var(--sub);
+      .ring-lbl {
+        font-size: 8px;
+        color: var(--hsub);
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        margin-top: 2px;
+        margin-top: 1px;
       }
 
-      /* tags */
-      .tags {
+      /* pills */
+      .pills-row {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
       }
-      .tag {
+      .hpill {
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding: 5px 12px;
-        border-radius: 20px;
+        padding: 6px 13px;
+        border-radius: 22px;
         font-size: 12px;
-        font-weight: 500;
-        background: var(--s2);
-        border: 1px solid var(--bd);
-        color: var(--sub);
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.7);
       }
-      .tag .d {
+      .hpill .dot {
         width: 6px;
         height: 6px;
         border-radius: 50%;
       }
 
-      /* ── CONTENT ─────────────────────────── */
-      .sec {
-        padding: 20px 16px 0;
-      }
-      .sh {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 14px;
-      }
-      .sl {
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--sub);
-      }
-      .slink {
-        font-size: 12px;
-        color: var(--pur);
-        font-weight: 500;
-        cursor: pointer;
-      }
-
-      /* ── KPI GRID ────────────────────────── */
-      .kgrid {
+      /* ── IMPACT CARDS (en header) ── */
+      .impact-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 10px;
+        margin-top: 20px;
       }
 
-      .kc {
+      .ic {
         border-radius: var(--r);
-        padding: 18px;
+        padding: 18px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ic-red {
+        background: var(--cred);
+      }
+      .ic-grn {
+        background: var(--cgrn);
+      }
+      .ic-amb {
+        background: var(--camb);
+      }
+      .ic-blu {
+        background: var(--cblu);
       }
 
-      .kc.red {
-        background: var(--card-red-bg);
-        border: 1px solid var(--card-red-bd);
-      }
-      .kc.grn {
-        background: var(--card-grn-bg);
-        border: 1px solid var(--card-grn-bd);
-      }
-      .kc.pur {
-        background: var(--card-pur-bg);
-        border: 1px solid var(--card-pur-bd);
-      }
-      .kc.neu {
-        background: var(--card-neu-bg);
-        border: 1px solid var(--card-neu-bd);
-      }
-
-      .kl {
-        font-size: 10px;
+      .ic-label {
+        font-size: 9px;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
         margin-bottom: 10px;
       }
-      .kc.red .kl {
+      .ic-red .ic-label {
         color: var(--red);
       }
-      .kc.grn .kl {
+      .ic-grn .ic-label {
         color: var(--green);
       }
-      .kc.pur .kl {
-        color: var(--pur);
+      .ic-amb .ic-label {
+        color: var(--amber);
       }
-      .kc.neu .kl {
-        color: var(--teal);
+      .ic-blu .ic-label {
+        color: #60a5fa;
       }
 
-      .kv {
-        font-family: "Syne", sans-serif;
-        font-size: 42px;
+      .ic-val {
+        font-size: 36px;
         font-weight: 800;
+        letter-spacing: -1.5px;
         line-height: 1;
-        letter-spacing: -1px;
       }
-      .kc.red .kv {
+      .ic-red .ic-val {
         color: var(--red);
       }
-      .kc.grn .kv {
+      .ic-grn .ic-val {
         color: var(--green);
       }
-      .kc.pur .kv {
-        color: var(--pur);
+      .ic-amb .ic-val {
+        color: var(--amber);
       }
-      .kc.neu .kv {
-        color: var(--teal);
-        font-size: 38px;
+      .ic-blu .ic-val {
+        color: #60a5fa;
       }
 
-      .ks {
-        font-size: 12px;
-        color: var(--sub);
+      /* word values smaller */
+      .ic-val.word {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+      }
+
+      .ic-desc {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.4);
         margin-top: 8px;
         line-height: 1.4;
       }
 
-      /* ── AI CARD ─────────────────────────── */
-      .ai {
-        background: var(--s1);
-        border: 1px solid var(--bd);
-        border-radius: var(--r);
-        padding: 18px;
+      /* ══════════════════════════════════════
+   BODY — ZONA CLARA
+══════════════════════════════════════ */
+      .body-zone {
+        background: var(--bbg);
+        padding: 20px 16px 0;
       }
-      .ail {
+
+      /* section header */
+      .sec-hdr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .sec-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #aaa;
+      }
+      .sec-link {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--blue);
+        cursor: pointer;
+      }
+
+      /* card base */
+      .card {
+        background: var(--bcard);
+        border: 1px solid var(--bbd);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+
+      /* ── AI CARD ── */
+      .ai-card {
+        padding: 18px 18px 20px;
+        margin-bottom: 0;
+      }
+      .ai-label {
         display: flex;
         align-items: center;
         gap: 8px;
         font-size: 11px;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--yel);
+        color: var(--amber);
         margin-bottom: 12px;
       }
-      .aico {
-        width: 24px;
-        height: 24px;
-        border-radius: 8px;
-        background: rgba(245, 158, 11, 0.15);
-        border: 1px solid rgba(245, 158, 11, 0.25);
+      .ai-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 7px;
+        background: rgba(232, 135, 26, 0.12);
+        border: 1px solid rgba(232, 135, 26, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
+        font-size: 12px;
       }
-      .ait {
+      .ai-text {
         font-size: 14px;
-        color: #c5c5c5;
+        color: #444;
         line-height: 1.7;
       }
-      .ait strong {
-        color: var(--text);
-        font-weight: 600;
+      .ai-text strong {
+        color: var(--btxt);
+        font-weight: 700;
       }
 
-      /* ── SIMULATOR ───────────────────────── */
-      .sim {
-        background: var(--s1);
-        border: 1px solid var(--bd);
-        border-radius: var(--r);
-        padding: 18px;
+      /* ── SIMULATOR ── */
+      .sim-card {
+        padding: 18px 18px 20px;
       }
-      .sim-t {
-        font-family: "Syne", sans-serif;
+      .sim-title {
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 800;
+        letter-spacing: -0.3px;
         margin-bottom: 4px;
       }
-      .sim-s {
+      .sim-sub {
         font-size: 12px;
-        color: var(--sub);
+        color: var(--bsub);
         margin-bottom: 18px;
       }
-      .slr {
+
+      .sl-row {
         margin-bottom: 16px;
       }
-      .slh {
+      .sl-hdr {
         display: flex;
         justify-content: space-between;
         margin-bottom: 8px;
       }
-      .sln {
+      .sl-name {
         font-size: 13px;
-        color: #bbb;
+        font-weight: 500;
+        color: #555;
       }
-      .slv {
-        font-family: "Syne", sans-serif;
-        font-size: 16px;
-        font-weight: 800;
-        color: var(--text);
+      .sl-val {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--btxt);
       }
 
       input[type="range"] {
         -webkit-appearance: none;
         width: 100%;
         height: 4px;
-        background: var(--s3);
+        background: #e5e5e5;
         border-radius: 2px;
         outline: none;
         cursor: pointer;
@@ -376,267 +389,267 @@
         -webkit-appearance: none;
         width: 20px;
         height: 20px;
-        background: var(--pur);
+        background: var(--btxt);
         border-radius: 50%;
-        border: 3px solid var(--bg);
+        border: 3px solid var(--bcard);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
       }
 
-      .sim-res {
-        background: var(--s2);
-        border: 1px solid var(--bd);
-        border-radius: 12px;
+      .sim-result {
+        background: var(--bbg);
+        border: 1px solid var(--bbd);
+        border-radius: 14px;
         padding: 16px;
-        margin-top: 4px;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-      .sim-rl {
+      .sim-result-lbl {
         font-size: 12px;
-        color: var(--sub);
+        color: var(--bsub);
+        font-weight: 500;
       }
-      .sim-rv {
-        font-family: "Syne", sans-serif;
+      .sim-result-val {
         font-size: 26px;
         font-weight: 800;
+        letter-spacing: -1px;
         color: var(--green);
       }
 
-      /* ── ALERTS ──────────────────────────── */
-      .alc {
-        background: var(--s1);
-        border: 1px solid var(--bd);
-        border-radius: var(--r);
-        overflow: hidden;
-      }
-      .alr {
+      /* ── ALERTS ── */
+      .alert-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--bd);
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--bbd);
         gap: 12px;
       }
-      .alr:last-child {
+      .alert-row:last-child {
         border-bottom: none;
       }
-      .all {
+      .alert-left {
         display: flex;
         align-items: center;
         gap: 12px;
         flex: 1;
       }
-      .ale {
+      .alert-emoji {
         width: 40px;
         height: 40px;
         border-radius: 12px;
-        background: var(--s2);
+        background: var(--bbg);
+        border: 1px solid var(--bbd);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 20px;
         flex-shrink: 0;
       }
-      .aln {
+      .alert-name {
         font-size: 13px;
         font-weight: 600;
+        color: var(--btxt);
       }
-      .ali {
+      .alert-impact {
         font-size: 11px;
-        color: var(--sub);
+        color: var(--bsub);
         margin-top: 2px;
       }
-      .alp {
-        font-family: "Syne", sans-serif;
-        font-size: 17px;
+      .alert-pct {
+        font-size: 16px;
         font-weight: 800;
         color: var(--red);
         flex-shrink: 0;
+        letter-spacing: -0.3px;
       }
 
-      /* ── PLATILLOS ───────────────────────── */
-      .plc {
-        background: var(--s1);
-        border: 1px solid var(--bd);
-        border-radius: var(--r);
-        overflow: hidden;
-      }
-      .plr {
-        padding: 13px 16px;
-        border-bottom: 1px solid var(--bd);
+      /* ── PLATILLOS ── */
+      .plat-row {
+        padding: 13px 18px;
+        border-bottom: 1px solid var(--bbd);
         display: none;
       }
-      .plr.v {
+      .plat-row.vis {
         display: block;
       }
-      .plr:last-child {
+      .plat-row:last-child {
         border-bottom: none;
       }
-      .plt {
+      .plat-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         gap: 8px;
         margin-bottom: 5px;
       }
-      .pln {
+      .plat-name {
         font-size: 13px;
         font-weight: 600;
-        line-height: 1.3;
+        color: var(--btxt);
         flex: 1;
+        line-height: 1.3;
       }
-      .plrr {
+      .plat-right {
         display: flex;
         align-items: center;
         gap: 8px;
         flex-shrink: 0;
       }
-      .plp {
-        font-family: "Syne", sans-serif;
-        font-size: 15px;
+      .plat-pct {
+        font-size: 14px;
         font-weight: 800;
+        letter-spacing: -0.3px;
       }
-      .plb {
+      .plat-badge {
         font-size: 9px;
         font-weight: 700;
         padding: 2px 7px;
         border-radius: 6px;
         letter-spacing: 0.05em;
       }
-      .cr {
+      .c-red {
         color: var(--red);
       }
-      .cy {
-        color: var(--yel);
+      .c-yel {
+        color: var(--amber);
       }
-      .cg {
+      .c-grn {
         color: var(--green);
       }
-      .br {
+      .b-red {
         color: var(--red);
-        background: rgba(244, 63, 94, 0.12);
+        background: rgba(229, 56, 59, 0.1);
       }
-      .by {
-        color: var(--yel);
-        background: rgba(245, 158, 11, 0.12);
+      .b-yel {
+        color: var(--amber);
+        background: rgba(232, 135, 26, 0.1);
       }
-      .bg {
+      .b-grn {
         color: var(--green);
-        background: rgba(34, 197, 94, 0.12);
+        background: rgba(45, 158, 107, 0.1);
       }
-      .pls {
+      .plat-sub {
         font-size: 11px;
-        color: var(--sub);
+        color: var(--bsub);
         margin-bottom: 8px;
         line-height: 1.4;
       }
-      .pg {
-        height: 3px;
-        background: var(--s3);
-        border-radius: 2px;
+      .prog {
+        height: 6px;
+        background: #eee;
+        border-radius: 3px;
         overflow: hidden;
       }
-      .pf {
+      .prog-fill {
         height: 100%;
-        border-radius: 2px;
+        border-radius: 3px;
       }
-      .fr {
+      .f-red {
         background: var(--red);
       }
-      .fy {
-        background: var(--yel);
+      .f-yel {
+        background: var(--amber);
       }
-      .fg {
+      .f-grn {
         background: var(--green);
       }
 
-      /* pills */
-      .pills {
+      /* filter pills (body) */
+      .filter-pills {
         display: flex;
         gap: 6px;
       }
-      .pill {
+      .fpill {
         font-size: 11px;
-        font-weight: 500;
-        padding: 4px 12px;
+        font-weight: 600;
+        padding: 5px 12px;
         border-radius: 20px;
         cursor: pointer;
-        border: 1px solid var(--bd);
+        border: 1px solid var(--bbd);
         background: transparent;
-        color: var(--sub);
-        font-family: "DM Sans", sans-serif;
+        color: var(--bsub);
+        font-family: "Inter", sans-serif;
         transition: all 0.15s;
       }
-      .pill.on {
-        background: var(--s2);
-        color: var(--text);
-        border-color: #3a3a3a;
+      .fpill.on {
+        background: var(--btxt);
+        color: #fff;
+        border-color: var(--btxt);
       }
 
-      /* ── BOTTOM ──────────────────────────── */
-      .bot {
+      /* ══════════════════════════════════════
+   BOTTOM BAR
+══════════════════════════════════════ */
+      .bottom-bar {
         position: fixed;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
         max-width: 430px;
-        background: linear-gradient(to top, var(--bg) 60%, transparent);
-        padding: 14px 16px calc(20px + var(--sb));
+        background: linear-gradient(to top, var(--bbg) 65%, transparent);
+        padding: 12px 16px calc(18px + var(--sb));
         z-index: 100;
       }
-      .fbtn {
+      .fab {
         width: 100%;
-        height: 54px;
-        border-radius: 14px;
+        height: 56px;
+        border-radius: 16px;
         border: none;
-        background: var(--text);
-        color: var(--bg);
-        font-family: "Syne", sans-serif;
+        background: var(--btxt);
+        color: #fff;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
-        font-weight: 800;
-        letter-spacing: 0.02em;
+        font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
         cursor: pointer;
-        transition: opacity 0.15s;
+        letter-spacing: -0.1px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition:
+          opacity 0.15s,
+          transform 0.1s;
       }
-      .fbtn:active {
-        opacity: 0.8;
+      .fab:active {
+        opacity: 0.88;
+        transform: scale(0.99);
       }
-      .upd {
+      .updated {
         text-align: center;
         font-size: 11px;
-        color: var(--sub2);
-        margin-top: 8px;
+        color: #bbb;
+        margin-top: 9px;
       }
 
-      /* ── MODAL ───────────────────────────── */
-      .ov {
+      /* ══════════════════════════════════════
+   MODAL
+══════════════════════════════════════ */
+      .overlay {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.85);
+        background: rgba(0, 0, 0, 0.6);
         display: none;
         align-items: flex-end;
         justify-content: center;
         z-index: 200;
         backdrop-filter: blur(8px);
       }
-      .ov.open {
+      .overlay.open {
         display: flex;
       }
-      .mod {
-        background: var(--s1);
-        border-radius: 22px 22px 0 0;
+      .modal {
+        background: var(--bcard);
+        border-radius: 24px 24px 0 0;
         width: 100%;
         max-width: 430px;
-        padding: 10px 18px calc(28px + var(--sb));
-        border-top: 1px solid var(--bd);
-        animation: up 0.22s ease;
+        padding: 10px 20px calc(28px + var(--sb));
+        border-top: 1px solid var(--bbd);
+        animation: slideup 0.22s ease;
       }
-      @keyframes up {
+      @keyframes slideup {
         from {
           transform: translateY(100%);
         }
@@ -644,94 +657,101 @@
           transform: translateY(0);
         }
       }
-      .mh {
+      .modal-handle {
         width: 36px;
         height: 4px;
-        background: var(--s3);
+        background: #ddd;
         border-radius: 2px;
         margin: 0 auto 20px;
       }
-      .mt {
-        font-family: "Syne", sans-serif;
+      .modal-title {
         font-size: 20px;
         font-weight: 800;
+        letter-spacing: -0.4px;
         margin-bottom: 6px;
       }
-      .ms {
+      .modal-sub {
         font-size: 13px;
-        color: var(--sub);
-        margin-bottom: 18px;
+        color: var(--bsub);
+        margin-bottom: 20px;
         line-height: 1.5;
       }
-      .mbs {
+      .modal-btns {
         display: flex;
         flex-direction: column;
         gap: 10px;
       }
-      .mb {
+      .modal-btn {
         display: flex;
         align-items: center;
         gap: 14px;
-        background: var(--s2);
-        border: 1px solid var(--bd);
-        border-radius: 14px;
+        background: var(--bbg);
+        border: 1px solid var(--bbd);
+        border-radius: 16px;
         padding: 15px 16px;
         cursor: pointer;
         transition: border-color 0.15s;
       }
-      .mb:hover {
-        border-color: var(--pur);
+      .modal-btn:hover {
+        border-color: #aaa;
       }
-      .mi {
+      .modal-ico {
         font-size: 22px;
-        width: 34px;
+        width: 36px;
         text-align: center;
       }
-      .mif h4 {
+      .modal-info h4 {
         font-size: 14px;
-        font-weight: 600;
-        color: var(--text);
+        font-weight: 700;
+        color: var(--btxt);
         margin-bottom: 2px;
       }
-      .mif p {
+      .modal-info p {
         font-size: 12px;
-        color: var(--sub);
+        color: var(--bsub);
       }
-      .mc {
+      .modal-cancel {
         margin-top: 6px;
         width: 100%;
         background: none;
         border: none;
-        color: var(--sub);
+        color: var(--bsub);
         font-size: 14px;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         padding: 10px;
         cursor: pointer;
+        font-weight: 500;
       }
 
+      /* toast */
       #toast {
         position: fixed;
         bottom: 115px;
         left: 50%;
-        transform: translateX(-50%) translateY(10px);
-        background: #1e1e1e;
+        transform: translateX(-50%) translateY(12px);
+        background: #1a1a1a;
         color: #fff;
         padding: 10px 18px;
         border-radius: 22px;
         font-size: 12px;
+        font-weight: 500;
         opacity: 0;
         transition: all 0.25s;
         z-index: 300;
         white-space: nowrap;
         pointer-events: none;
-        border: 1px solid var(--bd);
+      }
+
+      /* spacer between header and body */
+      .zone-divider {
+        height: 0;
       }
     </style>
   </head>
   <body>
-    <!-- HEADER — NEGRO -->
+    <!-- ══ HEADER ZONE (oscuro) ══ -->
     <header class="hdr">
-      <div class="hdr-top">
+      <div class="hdr-row1">
         <div>
           <div class="hdr-brand">Margen</div>
           <div class="hdr-name">Dogos y Monos</div>
@@ -739,71 +759,67 @@
             FC promedio 25.9% &middot; 12 platillos en rojo &middot; semana 13
           </div>
         </div>
-        <div class="rw">
-          <svg viewBox="0 0 80 80" width="80" height="80">
-            <circle class="rt" cx="40" cy="40" r="36" />
-            <circle class="rf" cx="40" cy="40" r="36" />
+        <div class="ring-wrap">
+          <svg viewBox="0 0 76 76" width="76" height="76">
+            <circle class="ring-track" cx="38" cy="38" r="34" />
+            <circle class="ring-fill" cx="38" cy="38" r="34" />
           </svg>
-          <div class="ri">
-            <span class="rn">74</span>
-            <span class="rl">Score</span>
+          <div class="ring-inner">
+            <span class="ring-num">74</span>
+            <span class="ring-lbl">Score</span>
           </div>
         </div>
       </div>
-      <div class="tags">
-        <span class="tag"
-          ><span class="d" style="background: var(--green)"></span>FC
+
+      <div class="pills-row">
+        <span class="hpill"
+          ><span class="dot" style="background: var(--green)"></span>FC
           25.9%</span
         >
-        <span class="tag"
-          ><span class="d" style="background: var(--red)"></span>12 ALTO</span
+        <span class="hpill"
+          ><span class="dot" style="background: var(--red)"></span>12 ALTO</span
         >
-        <span class="tag"
-          ><span class="d" style="background: var(--yel)"></span>10
+        <span class="hpill"
+          ><span class="dot" style="background: var(--amber)"></span>10
           REVISAR</span
         >
       </div>
-    </header>
 
-    <!-- IMPACTO FINANCIERO -->
-    <div class="sec">
-      <div class="sh"><span class="sl">Impacto financiero</span></div>
-      <div class="kgrid">
-        <div class="kc red">
-          <div class="kl">Perdida estimada</div>
-          <div class="kv">$8,420</div>
-          <div class="ks">esta semana &middot; MXN</div>
+      <!-- 4 impact cards dentro del header oscuro -->
+      <div class="impact-grid">
+        <div class="ic ic-red">
+          <div class="ic-label">Perdida estimada</div>
+          <div class="ic-val">$8,420</div>
+          <div class="ic-desc">esta semana &middot; MXN</div>
         </div>
-
-        <div class="kc grn">
-          <div class="kl">Potencial recuperable</div>
-          <div class="kv">$6,180</div>
-          <div class="ks">si bajas FC a 30%</div>
+        <div class="ic ic-grn">
+          <div class="ic-label">A recuperar</div>
+          <div class="ic-val">$6,180</div>
+          <div class="ic-desc">si bajas FC a 30%</div>
         </div>
-
-        <div class="kc neu">
-          <div class="kl">Mejor platillo</div>
-          <div class="kv" style="font-size: 36px">Alitas</div>
-          <div class="ks">27.8% FC &middot; empuja más ventas</div>
+        <div class="ic ic-amb">
+          <div class="ic-label">Mejor platillo</div>
+          <div class="ic-val word">Alitas</div>
+          <div class="ic-desc">27.8% FC &middot; empuja ventas</div>
         </div>
-
-        <div class="kc pur">
-          <div class="kl">Acción rápida</div>
-          <div class="kv">+$25</div>
-          <div class="ks">al 2x1 recupera $3,200/mes</div>
+        <div class="ic ic-blu">
+          <div class="ic-label">Acción rápida</div>
+          <div class="ic-val">+$25</div>
+          <div class="ic-desc">al 2x1 recupera $3,200/mes</div>
         </div>
       </div>
-    </div>
+    </header>
 
-    <!-- MARGEN AI -->
-    <div class="sec">
-      <div class="sh"><span class="sl">Análisis</span></div>
-      <div class="ai">
-        <div class="ail">
-          <div class="aico">✦</div>
+    <!-- ══ BODY ZONE (claro) ══ -->
+    <div class="body-zone">
+      <!-- AI -->
+      <div class="sec-hdr"><span class="sec-label">Análisis IA</span></div>
+      <div class="card ai-card">
+        <div class="ai-label">
+          <div class="ai-icon">✦</div>
           Margen AI
         </div>
-        <p class="ait">
+        <p class="ai-text">
           Esta semana dejaste ir <strong>$8,420 MXN</strong> en food cost
           innecesario. Solo con ajustar el precio del
           <strong>2x1 Hamburguesa +$25</strong> recuperas
@@ -812,27 +828,27 @@
           esta semana.
         </p>
       </div>
-    </div>
 
-    <!-- SIMULADOR -->
-    <div class="sec">
-      <div class="sh"><span class="sl">Simulador de precio</span></div>
-      <div class="sim">
-        <div class="sim-t">¿Cuánto ganarías?</div>
-        <div class="sim-s">
+      <!-- SIMULADOR -->
+      <div class="sec-hdr" style="margin-top: 20px">
+        <span class="sec-label">Simulador</span>
+      </div>
+      <div class="card sim-card">
+        <div class="sim-title">¿Cuánto ganarías?</div>
+        <div class="sim-sub">
           Ajusta los sliders y ve el impacto en tiempo real
         </div>
-        <div class="slr">
-          <div class="slh">
-            <span class="sln">FC objetivo</span>
-            <span class="slv" id="fcLbl">28%</span>
+        <div class="sl-row">
+          <div class="sl-hdr">
+            <span class="sl-name">FC objetivo</span>
+            <span class="sl-val" id="fcLbl">28%</span>
           </div>
           <input type="range" id="fcS" min="18" max="45" value="28" />
         </div>
-        <div class="slr">
-          <div class="slh">
-            <span class="sln">Ventas / mes</span>
-            <span class="slv" id="vLbl">$300k</span>
+        <div class="sl-row">
+          <div class="sl-hdr">
+            <span class="sl-name">Ventas / mes</span>
+            <span class="sl-val" id="vLbl">$300k</span>
           </div>
           <input
             type="range"
@@ -843,115 +859,121 @@
             step="10"
           />
         </div>
-        <div class="sim-res">
-          <span class="sim-rl">Utilidad adicional mensual</span>
-          <span class="sim-rv" id="util">+$6,270</span>
+        <div class="sim-result">
+          <span class="sim-result-lbl">Utilidad adicional mensual</span>
+          <span class="sim-result-val" id="util">+$6,270</span>
         </div>
       </div>
-    </div>
 
-    <!-- ALZAS DE PRECIO -->
-    <div class="sec">
-      <div class="sh">
-        <span class="sl">Alzas de precio</span>
-        <span class="slink">ver todo</span>
+      <!-- ALZAS -->
+      <div class="sec-hdr" style="margin-top: 20px">
+        <span class="sec-label">Alzas de precio</span>
+        <span class="sec-link">ver todo</span>
       </div>
-      <div class="alc">
-        <div class="alr">
-          <div class="all">
-            <div class="ale">🍅</div>
+      <div class="card">
+        <div class="alert-row">
+          <div class="alert-left">
+            <div class="alert-emoji">🍅</div>
             <div>
-              <div class="aln">Jitomate</div>
-              <div class="ali">Impacta +$340 en costos esta semana</div>
+              <div class="alert-name">Jitomate</div>
+              <div class="alert-impact">
+                Impacta +$340 en costos esta semana
+              </div>
             </div>
           </div>
-          <div class="alp">+27%</div>
+          <div class="alert-pct">+27%</div>
         </div>
-        <div class="alr">
-          <div class="all">
-            <div class="ale">🥑</div>
+        <div class="alert-row">
+          <div class="alert-left">
+            <div class="alert-emoji">🥑</div>
             <div>
-              <div class="aln">Aguacate</div>
-              <div class="ali">Impacta +$210 en costos esta semana</div>
+              <div class="alert-name">Aguacate</div>
+              <div class="alert-impact">
+                Impacta +$210 en costos esta semana
+              </div>
             </div>
           </div>
-          <div class="alp">+14%</div>
+          <div class="alert-pct">+14%</div>
         </div>
-        <div class="alr">
-          <div class="all">
-            <div class="ale">🍗</div>
+        <div class="alert-row">
+          <div class="alert-left">
+            <div class="alert-emoji">🍗</div>
             <div>
-              <div class="aln">Pollo (pechuga)</div>
-              <div class="ali">Impacta +$180 en costos esta semana</div>
+              <div class="alert-name">Pollo (pechuga)</div>
+              <div class="alert-impact">
+                Impacta +$180 en costos esta semana
+              </div>
             </div>
           </div>
-          <div class="alp">+6%</div>
+          <div class="alert-pct">+6%</div>
         </div>
       </div>
-    </div>
 
-    <!-- PLATILLOS -->
-    <div class="sec">
-      <div class="sh">
-        <span class="sl">Platillos por food cost</span>
-        <div class="pills">
-          <button class="pill on" onclick="fil('all', this)">Todos</button>
-          <button class="pill" onclick="fil('alto', this)">Alto</button>
-          <button class="pill" onclick="fil('ok', this)">OK</button>
+      <!-- PLATILLOS -->
+      <div class="sec-hdr" style="margin-top: 20px">
+        <span class="sec-label">Platillos</span>
+        <div class="filter-pills">
+          <button class="fpill on" onclick="fil('all', this)">Todos</button>
+          <button class="fpill" onclick="fil('alto', this)">Alto</button>
+          <button class="fpill" onclick="fil('ok', this)">OK</button>
         </div>
       </div>
-      <div class="plc" id="plist"></div>
+      <div class="card" id="plist"></div>
     </div>
+    <!-- /body-zone -->
 
-    <!-- BOTTOM -->
-    <div class="bot">
-      <button class="fbtn" onclick="openM()">
+    <!-- BOTTOM BAR -->
+    <div class="bottom-bar">
+      <button class="fab" onclick="openModal()">
         📷&nbsp;&nbsp;Subir factura
       </button>
-      <div class="upd">Actualizado hace 2 horas &middot; lun 30 mar 2026</div>
+      <div class="updated">
+        Actualizado hace 2 horas &middot; lun 30 mar 2026
+      </div>
     </div>
 
     <!-- MODAL -->
-    <div class="ov" id="ov" onclick="closeOut(event)">
-      <div class="mod">
-        <div class="mh"></div>
-        <div class="mt">Subir factura</div>
-        <p class="ms">
-          Claude extrae los precios automáticamente y recalcula tu food cost.
+    <div class="overlay" id="overlay" onclick="closeOuter(event)">
+      <div class="modal">
+        <div class="modal-handle"></div>
+        <div class="modal-title">Subir factura</div>
+        <p class="modal-sub">
+          Claude extrae los precios y recalcula tu food cost automáticamente.
         </p>
-        <div class="mbs">
-          <button class="mb" onclick="showToast('Abriendo cámara…')">
-            <span class="mi">📷</span>
-            <div class="mif">
+        <div class="modal-btns">
+          <button class="modal-btn" onclick="toast('Abriendo cámara…')">
+            <span class="modal-ico">📷</span>
+            <div class="modal-info">
               <h4>Tomar foto</h4>
               <p>Fotografía la factura del proveedor</p>
             </div>
           </button>
-          <button class="mb" onclick="showToast('Selecciona tu archivo…')">
-            <span class="mi">📄</span>
-            <div class="mif">
+          <button class="modal-btn" onclick="toast('Selecciona tu archivo…')">
+            <span class="modal-ico">📄</span>
+            <div class="modal-info">
               <h4>Subir archivo</h4>
               <p>PDF, imagen o XML</p>
             </div>
           </button>
           <button
-            class="mb"
-            onclick="showToast('Abre WhatsApp para mandar la foto…')"
+            class="modal-btn"
+            onclick="toast('Abre WhatsApp para mandar la foto…')"
           >
-            <span class="mi">💬</span>
-            <div class="mif">
+            <span class="modal-ico">💬</span>
+            <div class="modal-info">
               <h4>Enviar por WhatsApp</h4>
               <p>Manda la foto al número de Margen</p>
             </div>
           </button>
         </div>
-        <button class="mc" onclick="closeM()">Cancelar</button>
+        <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
       </div>
     </div>
 
     <div id="toast"></div>
 
     <script>
+      // ── PLATILLOS DATA ─────────────────────
       const P = [
         {
           n: "2x1 Hamburguesa",
@@ -1077,76 +1099,84 @@
         },
       ];
 
-      function cc(s) {
-        return s === "alto" ? "cr" : s === "revisar" ? "cy" : "cg";
+      function pColor(s) {
+        return s === "alto" ? "c-red" : s === "revisar" ? "c-yel" : "c-grn";
       }
-      function bc(s) {
-        return s === "alto" ? "br" : s === "revisar" ? "by" : "bg";
+      function bColor(s) {
+        return s === "alto" ? "b-red" : s === "revisar" ? "b-yel" : "b-grn";
       }
-      function fc(s) {
-        return s === "alto" ? "fr" : s === "revisar" ? "fy" : "fg";
+      function fColor(s) {
+        return s === "alto" ? "f-red" : s === "revisar" ? "f-yel" : "f-grn";
       }
-      function lbl(s) {
+      function badge(s) {
         const m = { alto: "ALTO", revisar: "REVISAR", ok: "OK" };
-        return `<span class="plb ${bc(s)}">${m[s]}</span>`;
+        return `<span class="plat-badge ${bColor(s)}">${m[s]}</span>`;
       }
 
       document.getElementById("plist").innerHTML = P.map(
         (p) => `
-  <div class="plr v" data-s="${p.s}">
-    <div class="plt">
-      <span class="pln">${p.n}</span>
-      <div class="plrr"><span class="plp ${cc(p.s)}">${p.p}%</span>${lbl(p.s)}</div>
+  <div class="plat-row vis" data-s="${p.s}">
+    <div class="plat-top">
+      <span class="plat-name">${p.n}</span>
+      <div class="plat-right">
+        <span class="plat-pct ${pColor(p.s)}">${p.p}%</span>
+        ${badge(p.s)}
+      </div>
     </div>
-    <div class="pls">${p.t}</div>
-    <div class="pg"><div class="pf ${fc(p.s)}" style="width:${Math.min(p.p, 100)}%"></div></div>
+    <div class="plat-sub">${p.t}</div>
+    <div class="prog">
+      <div class="prog-fill ${fColor(p.s)}" style="width:${Math.min(p.p, 100)}%"></div>
+    </div>
   </div>`,
       ).join("");
 
       function fil(f, btn) {
         document
-          .querySelectorAll(".pill")
+          .querySelectorAll(".fpill")
           .forEach((b) => b.classList.remove("on"));
         btn.classList.add("on");
-        document.querySelectorAll(".plr").forEach((el) => {
+        document.querySelectorAll(".plat-row").forEach((el) => {
           const show =
             f === "all" ||
             (f === "alto" &&
               (el.dataset.s === "alto" || el.dataset.s === "revisar")) ||
             (f === "ok" && el.dataset.s === "ok");
-          el.classList.toggle("v", show);
+          el.classList.toggle("vis", show);
         });
       }
 
-      const HOY = 25.9;
-      function upd() {
+      // ── SIMULATOR ──────────────────────────
+      const FC_HOY = 25.9;
+      function updateSim() {
         const fc = +document.getElementById("fcS").value;
         const v = +document.getElementById("vS").value * 1000;
         document.getElementById("fcLbl").textContent = fc + "%";
         document.getElementById("vLbl").textContent = "$" + v / 1000 + "k";
-        const d = (HOY / 100 - fc / 100) * v;
+        const delta = (FC_HOY / 100 - fc / 100) * v;
         const el = document.getElementById("util");
         el.textContent =
-          (d >= 0 ? "+" : "") +
+          (delta >= 0 ? "+" : "") +
           "$" +
-          Math.abs(d).toLocaleString("es-MX", { maximumFractionDigits: 0 });
-        el.style.color = d >= 0 ? "var(--green)" : "var(--red)";
+          Math.abs(delta).toLocaleString("es-MX", { maximumFractionDigits: 0 });
+        el.style.color = delta >= 0 ? "var(--green)" : "var(--red)";
       }
-      document.getElementById("fcS").addEventListener("input", upd);
-      document.getElementById("vS").addEventListener("input", upd);
+      document.getElementById("fcS").addEventListener("input", updateSim);
+      document.getElementById("vS").addEventListener("input", updateSim);
 
-      function openM() {
-        document.getElementById("ov").classList.add("open");
+      // ── MODAL ───────────────────────────────
+      function openModal() {
+        document.getElementById("overlay").classList.add("open");
       }
-      function closeM() {
-        document.getElementById("ov").classList.remove("open");
+      function closeModal() {
+        document.getElementById("overlay").classList.remove("open");
       }
-      function closeOut(e) {
-        if (e.target === e.currentTarget) closeM();
+      function closeOuter(e) {
+        if (e.target === e.currentTarget) closeModal();
       }
 
-      function showToast(msg) {
-        closeM();
+      // ── TOAST ───────────────────────────────
+      function toast(msg) {
+        closeModal();
         const t = document.getElementById("toast");
         t.textContent = msg;
         Object.assign(t.style, {
@@ -1157,13 +1187,13 @@
           () =>
             Object.assign(t.style, {
               opacity: "0",
-              transform: "translateX(-50%) translateY(10px)",
+              transform: "translateX(-50%) translateY(12px)",
             }),
           2200,
         );
       }
 
-      upd();
+      updateSim();
     </script>
   </body>
 </html>
